@@ -1,13 +1,11 @@
-class Play extends Phaser.Scene {
+class Play2 extends Phaser.Scene {
     constructor() {
-        super("playScene");
+        super("playScene2");
     }
 
     // create()
     // create play scene
     create() {
-        /*let gameMusic = this.sound.add('gameMusic', { loop: true });
-        gameMusic.play();*/
 
         let scoreConfig = {
             fontFamily: 'Helvetica',
@@ -20,10 +18,10 @@ class Play extends Phaser.Scene {
             },
             align: 'center'
         };
-        
+        this.add.text(w / 2, h / 4, 'Play2', playConfig).setOrigin(0.5);
         // create protagonist object
         this.sid = new synapse(this, this.game.config.width / 2, this.game.config.height / 2);
-        
+        this.sid.setScale(2);
 
         let gameOver = false;
 

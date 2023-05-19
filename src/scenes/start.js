@@ -25,7 +25,7 @@ class Start extends Phaser.Scene{
             fixedWidth: 0
         }
         // display start screen text and set default background
-        this.cameras.main.setBackgroundColor('rgba(221, 102, 85, 0.87)');
+        this.cameras.main.setBackgroundColor('E52424');
         this.add.text(game.config.width/2, game.config.height/2, 'Press (ENTER) to continue', startConfig).setOrigin(0.5);
         this.add.text(game.config.width/2, game.config.height*.75, 'Game Created by ', startConfig).setOrigin(0.5);
         let names = this.add.text(game.config.width/2, game.config.height*.85, 'Michael Takami, Alejanda Sicaros, Jacob Penlan, and Jessica Zogaric', startConfig).setOrigin(0.5);

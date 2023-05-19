@@ -27,18 +27,18 @@ class Loader extends Phaser.Scene {
         // load audio file path
         this.load.path  = './assets/sounds'
         // load audio
-        this.load.audio('sfx_select', 'menu_select.wav');
+        //this.load.audio('sfx_select', 'menu_select.wav');
 
         // load image file path
         this.load.path = "./assets/images"
         // load images
-        this.load.image('MenuBackground', '6MenuBackground.png');
+        //this.load.image('MenuBackground', '6MenuBackground.png');
         // WORK NEEDED: make a FavIcon (.ico file)
 
         // load spritesheet file path
         this.load.path = "./assets/spritesheets"
         // load spritesheets 
-        this.load.spritesheet('protagonist', 'protagonist.png', {frameWidth: 16, frameHeight: 25, startFrame: 0, endFrame: 8});
+        //this.load.spritesheet('protagonist', 'protagonist.png', {frameWidth: 16, frameHeight: 25, startFrame: 0, endFrame: 8});
     
         
         // change scene upon completion
