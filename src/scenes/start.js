@@ -27,7 +27,9 @@ class Start extends Phaser.Scene{
         // display start screen text and set default background
         this.cameras.main.setBackgroundColor('rgba(221, 102, 85, 0.87)');
         this.add.text(game.config.width/2, game.config.height/2, 'Press (ENTER) to continue', startConfig).setOrigin(0.5);
-        this.add.text(game.config.width/2, game.config.height*.75, 'Game Created by Michael Takami, Alejanda Sicaros, Jacob Penlan, and Jessica Zogaric', startConfig).setOrigin(0.5);
+        this.add.text(game.config.width/2, game.config.height*.75, 'Game Created by ', startConfig).setOrigin(0.5);
+        let names = this.add.text(game.config.width/2, game.config.height*.85, 'Michael Takami, Alejanda Sicaros, Jacob Penlan, and Jessica Zogaric', startConfig).setOrigin(0.5);
+        names.setScale(0.75)
         
 
         // define keys
@@ -39,9 +41,8 @@ class Start extends Phaser.Scene{
     // menu update function
     update() {
         if (Phaser.Input.Keyboard.JustDown(keyENTER)) {
-            this.sound.play('startButton');
             // NEEDS TESTING: Uses callback to start the next scene
-            this.cameras.main.fadeOut(500,0,0,0, this.scene.start('menuScene'));
+            this.cameras.main.fadeOut(1000,10,20,30,);
             this.time.delayedCall(1100, () =>{
                 // restyle border for next scene
                 let canvas = document.querySelector('canvas');

@@ -1,6 +1,6 @@
 class Loader extends Phaser.Scene {
     constructor() {
-        super("loaderScene");
+        super('loaderScene');
     }
     
     // preload()
@@ -36,7 +36,7 @@ class Loader extends Phaser.Scene {
         // WORK NEEDED: make a FavIcon (.ico file)
 
         // load spritesheet file path
-        this.load.path("./assets/spritesheets")
+        this.load.path = "./assets/spritesheets"
         // load spritesheets 
         this.load.spritesheet('protagonist', 'protagonist.png', {frameWidth: 16, frameHeight: 25, startFrame: 0, endFrame: 8});
     
