@@ -9,13 +9,25 @@ class Play extends Phaser.Scene {
         /*let gameMusic = this.sound.add('gameMusic', { loop: true });
         gameMusic.play();*/
 
+        //add camera to follow protag if needed (or just make map scroll)
+        // this.cameras.main.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
+        // this.cameras.main.startFollow(this.sid, true, 0.25, 0.25);
+        // this.physics.world.bounds.setTo(0, 0, map.widthInPixels, map.heightInPixels);
+        
         //add map tilesprite
         const map = this.add.tilemap('tilemapJSON');
-        const tileset = map.addTilesetImage('Tileset', 'tileset');
+        const tileset = map.addTilesetImage('tileset', 'tilesetImage');
+
+        //enable collision for map
+        groundLayer.setCollisionByProperty({ is_placeable: true });
+        this.physics.add.collider(this.sid, groundLayer);
 
         //add layers for tile
-        const bgLayer = map.createLayer('Background', tileset, 0, 0);
- 
+        const bgLayer = map.createLayer('Sky', tileset, 0, 0);
+        const terrainLayer = map.createLayer('Decoration', tileset, 0, 0);
+        const groundLayer = map.createLayer('Ground', tileset, 0, 0);
+        const terrain2Layer = map.createLayer('Decoration 2', tileset, 0, 0);
+
         let scoreConfig = {
             fontFamily: 'Helvetica',
             fontSize: '24px',
@@ -29,8 +41,8 @@ class Play extends Phaser.Scene {
         };
         
         // create protagonist object
-        this.sid = new synapse(this, this.game.config.width / 2, this.game.config.height / 2);
-        
+        this.sid = new synapse(this, this.game.config.width / 2, this.game.config.height / 2, 'protagonist').setOrigin(0.5, 0.5);
+        //could fix animation later
 
         let gameOver = false;
 
