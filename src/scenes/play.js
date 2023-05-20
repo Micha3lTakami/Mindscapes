@@ -9,6 +9,13 @@ class Play extends Phaser.Scene {
         /*let gameMusic = this.sound.add('gameMusic', { loop: true });
         gameMusic.play();*/
 
+        //add map tilesprite
+        const map = this.add.tilemap('tilemapJSON');
+        const tileset = map.addTilesetImage('Tileset', 'tileset');
+
+        //add layers for tile
+        const bgLayer = map.createLayer('Background', tileset, 0, 0);
+ 
         let scoreConfig = {
             fontFamily: 'Helvetica',
             fontSize: '24px',

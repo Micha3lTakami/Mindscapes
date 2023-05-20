@@ -6,6 +6,10 @@
 // define and configure main Phaser game object
 let config = {
     type: Phaser.AUTO,
+    // make pixel art crip
+    render: {
+        pixelArt: true
+    },
     // set parent container for where playscreen should be displayed on webpage
     parent : 'mindscape',
     height: 640,
@@ -16,14 +20,15 @@ let config = {
     physics: {
         default: 'arcade',
         arcade: {
-            //debug: true,
+            debug: true,
             gravity: {
                 x: 0,
                 y: 0
             }
         }
     },
-    scene: [ Loader, Start, Menu, Play]
+    zoom: 2,
+    scene: [ Loader, Menu, Play, Play2, Start ]
 }
 
 // define game
