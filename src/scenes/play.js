@@ -43,7 +43,7 @@ class Play extends Phaser.Scene {
         };
         
         // create protagonist object
-        this.sid = new synapse(this, this.game.config.width / 2, this.game.config.height / 2, 'protagonist').setOrigin(0.5, 0.5);
+        this.sid = new synapse(this, this.game.config.width / 2, this.game.config.height / 2, 'synapse').setOrigin(0.5, 0.5);
         this.sid.setFriction(0.2, 0.2);
         //could fix animation later
 

@@ -23,19 +23,43 @@ class synapse extends Phaser.Physics.Arcade.Sprite {
 
         // Set the drag to control friction
         this.body.setDrag(100, 0); // Adjust the values as needed
+
+        scene.anims.create({
+            key: 'right',
+            frames: scene.anims.generateFrameNumbers(spritesheet, { start: 3, end: 3 }),
+            frameRate: 10,
+            repeat: -1
+        });
+        scene.anims.create({
+            key: 'left',
+            frames: scene.anims.generateFrameNumbers(spritesheet, { start: 4, end: 4 }),
+            frameRate: 10,
+            repeat: -1
+        });
+        scene.anims.create({
+            key: 'idle',
+            frames: scene.anims.generateFrameNumbers(spritesheet, { start: 0, end: 2 }),
+            frameRate: 10,
+            repeat: -1
+        });
+        
+
+
     }
 
     update() {
         // Check for keyboard input
         if (this.cursors.left.isDown) {
             this.body.setVelocityX(-100);
-            // this.anims.play('left', true);
+            this.anims.play('left', true);
         } 
         else if (this.cursors.right.isDown) {
             this.body.setVelocityX(100);
-            // this.anims.play('right', true);
+            this.anims.play('right', true);
         }
-
+        else{
+            this.anims.play('idle', true);
+        }
     
         // Check if the up key is pressed and the sprite can jump
         if (this.cursors.up.isDown && this.body.onFloor()) {
