@@ -48,7 +48,9 @@ class Play extends Phaser.Scene {
         this.sid.setScale(2);
         
         this.happy1 = new enemy(this, game.config.width/3, game.config.height/2, 'happy').setOrigin(0.5)
+        this.happy1.setScale(3);
         this.sad1 = new enemy(this, game.config.width * .75, game.config.height/2, 'sad').setOrigin(0.5)
+        this.sad1.setScale(3)
         //could fix animation later
 
         let gameOver = false;
