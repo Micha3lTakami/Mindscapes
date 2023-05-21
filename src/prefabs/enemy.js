@@ -21,17 +21,6 @@ class enemy extends Phaser.Physics.Arcade.Sprite {
 
         // start 'attack' animation and set callback function to loop animation
         this.anims.play('attack');
-
-        // detect collisions with protagonist and pause scene when collision occurs
-        scene.physics.add.collider(this, scene.synapse, () => {
-            scene.physics.pause();
-            scene.sound.stopAll();
-            scene.sound.play('deathNoise');
-            this.destroy();
-            
-            scene.gameOver = true;
-        });
-  
     }
 
     update() {
