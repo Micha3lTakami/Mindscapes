@@ -9,10 +9,7 @@ class Play extends Phaser.Scene {
         /*let gameMusic = this.sound.add('gameMusic', { loop: true });
         gameMusic.play();*/
 
-        //add camera to follow protag if needed (or just make map scroll)
-        // this.cameras.main.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
-        // this.cameras.main.startFollow(this.sid, true, 0.25, 0.25);
-        // this.physics.world.bounds.setTo(0, 0, map.widthInPixels, map.heightInPixels);
+        
         
         //add map tilesprite
         const map = this.add.tilemap('tilemapJSON');
@@ -52,6 +49,11 @@ class Play extends Phaser.Scene {
         this.sad1 = new enemy(this, game.config.width * .75, game.config.height/2, 'sad').setOrigin(0.5)
         this.sad1.setScale(3)
         //could fix animation later
+
+        //add camera to follow protag if needed (or just make map scroll)
+        this.cameras.main.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
+        this.cameras.main.startFollow(this.sid, true, 0.25, 0.25);
+        this.physics.world.bounds.setTo(0, 0, map.widthInPixels, map.heightInPixels);
 
         let gameOver = false;
 
