@@ -45,6 +45,10 @@ class Play extends Phaser.Scene {
         // create protagonist object
         this.sid = new synapse(this, this.game.config.width / 2, this.game.config.height / 2, 'synapse').setOrigin(0.5, 0.5);
         this.sid.setFriction(0.2, 0.2);
+        this.sid.setScale(2);
+        
+        this.happy1 = new enemy(this, game.config.width/3, game.config.height/2, 'happy').setOrigin(0.5)
+        this.sad1 = new enemy(this, game.config.width * .75, game.config.height/2, 'sad').setOrigin(0.5)
         //could fix animation later
 
         let gameOver = false;

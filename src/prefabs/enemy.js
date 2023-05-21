@@ -5,17 +5,19 @@ class enemy extends Phaser.Physics.Arcade.Sprite {
         scene.add.existing(this);
         scene.physics.add.existing(this);
 
-        // enable movement
-        //this.body.setVelocityX(-200);
+        this.setCollideWorldBounds(true);
+        this.body.onWorldBounds = true;
+
         this.body.setAllowGravity(true);
+        this.body.setGravityY(50);
 
         // set up 'attack' animation
-        /*this.anims.create({
+        this.anims.create({
             key: 'attack',
             frames: this.anims.generateFrameNumbers(spritesheet, { start: 0, end: 2 }),
             frameRate: 10,
             repeat: -1
-        });*/
+        });
 
         // start 'attack' animation and set callback function to loop animation
         this.anims.play('attack');
