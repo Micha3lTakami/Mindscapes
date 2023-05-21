@@ -2,61 +2,44 @@ class synapse extends Phaser.Physics.Arcade.Sprite {
     constructor(scene, x, y, spritesheet) {
         super(scene, x, y, spritesheet);
 
-        // add object to existing scene
+        // Add object to the existing scene
         scene.add.existing(this);
 
-        // enable physics on the sprite
+        // Enable physics on the sprite
         scene.physics.add.existing(this);
 
-        // apply gravity to the sprite
-        this.body.gravity.y = 200;
+        // Apply gravity to the sprite
+        this.body.gravity.y = 300;
 
-        // set the maximum velocity of the sprite
-        this.body.maxVelocity.x = 200;
+        // Set the maximum velocity of the sprite
+        this.body.setMaxVelocity(200, 400); // Adjust the values as needed
 
-        // create cursor keys for input
+        // Create cursor keys for input
         this.cursors = scene.input.keyboard.createCursorKeys();
 
-
-
-        // set the collision detection for the sprite
+        // Set the collision detection for the sprite
         this.setCollideWorldBounds(true);
         this.body.onWorldBounds = true;
 
-        // add key inputs
-        this.cursors = scene.input.keyboard.createCursorKeys();
-
-
- 
+        // Set the drag to control friction
+        this.body.setDrag(100, 0); // Adjust the values as needed
     }
 
     update() {
-  
-
-        // check for keyboard input
-        if (this.cursors.left.isDown && this.canMove) {
-            this.body.setVelocityX(-200);
-            this.anims.play('left', true);
-
+        // Check for keyboard input
+        if (this.cursors.left.isDown) {
+            this.body.setVelocityX(-100);
+            // this.anims.play('left', true);
         } 
-        else if (this.cursors.right.isDown && this.canMove) {
-            this.body.setVelocityX(200);
-            this.anims.play('right', true);
-        }
-    
-        // check if the up key is pressed and the sprite can jump
-        if (this.cursors.up.isDown) {
-                this.body.setVelocityY(-500);
-                this.jumpCount++;
+        else if (this.cursors.right.isDown) {
+            this.body.setVelocityX(100);
+            // this.anims.play('right', true);
         }
 
     
-        // tint tutorial
-        if (this.rainbowTint) {
-            this.setTint(0xff00ff);
-        } 
-        else {
-            this.clearTint();
+        // Check if the up key is pressed and the sprite can jump
+        if (this.cursors.up.isDown && this.body.onFloor()) {
+            this.body.setVelocityY(-200); // Adjust the value as needed
         }
     }
 }

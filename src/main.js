@@ -27,7 +27,7 @@ let config = {
             }
         }
     },
-    zoom: 2,
+    //zoom: 2,
     scene: [ Loader, Menu, Play, Play2, Start ]
 }
 

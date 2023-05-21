@@ -6,7 +6,10 @@ class Loader extends Phaser.Scene {
     // preload()
     // pre-load game assets
     preload() {
-        // add text object for percentage loaded
+        // NEEDS COLOR CHANGE: updates CSS styling for start scene
+        let canvas = document.querySelector('canvas');
+        canvas.style.border = '10px #fff inset';  
+        this.cameras.main.fadeIn(1000);
         
         // WORK NEEDED: NEEDS TYPOGRAPHY UPDATE
         let loadConfig = { 
@@ -16,6 +19,7 @@ class Loader extends Phaser.Scene {
             fill: '#e6dfcc' 
         };
         
+        // add text object for percentage loaded
         let progressText = this.add.text(game.config.width/2, game.config.height/2, '0%', loadConfig).setOrigin(0.5);
 
         // update the loading percentage as assets are loaded
@@ -35,14 +39,14 @@ class Loader extends Phaser.Scene {
         // load image file path
         this.load.path = "./assets/images/"
         // load images
-        //this.load.image('MenuBackground', '6MenuBackground.png');
+        this.load.image('tilesetImage', 'tileset.png');
         // WORK NEEDED: make a FavIcon (.ico file)
 
         // load spritesheet file path
         this.load.path = "./assets/spritesheets/"
         // load spritesheets 
         this.load.spritesheet('protagonist', 'protagonist.png', {frameWidth: 16, frameHeight: 16, startFrame: 0, endFrame: 1});
-        this.load.image('tilesetImage', 'tileset.png');
+        
         
         
         // change scene upon completion

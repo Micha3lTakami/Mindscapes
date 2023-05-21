@@ -18,15 +18,17 @@ class Play extends Phaser.Scene {
         const map = this.add.tilemap('tilemapJSON');
         const tileset = map.addTilesetImage('tileset', 'tilesetImage');
 
-        //enable collision for map
-        groundLayer.setCollisionByProperty({ is_placeable: true });
-        this.physics.add.collider(this.sid, groundLayer);
+        
 
         //add layers for tile
         const bgLayer = map.createLayer('Sky', tileset, 0, 0);
         const terrainLayer = map.createLayer('Decoration', tileset, 0, 0);
         const groundLayer = map.createLayer('Ground', tileset, 0, 0);
         const terrain2Layer = map.createLayer('Decoration 2', tileset, 0, 0);
+        
+        //enable collision for map
+        /*groundLayer.setCollisionByProperty({ is_placeable: true });
+        this.physics.add.collider(this.sid, groundLayer);*/
 
         let scoreConfig = {
             fontFamily: 'Helvetica',
@@ -42,6 +44,7 @@ class Play extends Phaser.Scene {
         
         // create protagonist object
         this.sid = new synapse(this, this.game.config.width / 2, this.game.config.height / 2, 'protagonist').setOrigin(0.5, 0.5);
+        this.sid.setFriction(0.2, 0.2);
         //could fix animation later
 
         let gameOver = false;
