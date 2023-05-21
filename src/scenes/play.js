@@ -14,6 +14,7 @@ class Play extends Phaser.Scene {
         //add map tilesprite
         const map = this.add.tilemap('tilemapJSON');
         const tileset = map.addTilesetImage('tileset', 'tilesetImage');
+        
 
         
 
@@ -23,7 +24,6 @@ class Play extends Phaser.Scene {
         const groundLayer = map.createLayer('Ground', tileset, 0, 0);
         const terrain2Layer = map.createLayer('Decoration 2', tileset, 0, 0);
         
-        //enable collision for map
         /*groundLayer.setCollisionByProperty({ is_placeable: true });
         this.physics.add.collider(this.sid, groundLayer);*/
 
@@ -50,12 +50,20 @@ class Play extends Phaser.Scene {
         this.sad1.setScale(3)
         //could fix animation later
 
+        //enable collision for map
+        groundLayer.setCollisionByProperty({ collides: true })
+        //terrainLayer.setCollisionByProperty({ collides: true })
+        this.physics.add.collider(this.sid, groundLayer)
+        //this.physics.add.collider(this.sid, terrainLayer)
+        this.physics.add.collider(this.happy1, groundLayer)
+        this.physics.add.collider(this.sad1, groundLayer)
+
         //add camera to follow protag if needed (or just make map scroll)
         this.cameras.main.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
         this.cameras.main.startFollow(this.sid, true, 0.25, 0.25);
         this.physics.world.bounds.setTo(0, 0, map.widthInPixels, map.heightInPixels);
 
-        let gameOver = false;
+        this.gameOver = false;
 
         // reserve keys to navigate to menu or advance to next level
         this.keyM = this.input.keyboard.addKey('M');
@@ -88,6 +96,27 @@ class Play extends Phaser.Scene {
             align: 'center'
         };
         this.sid.update();
+
+        // detect collisions with protagonist and pause scene when collision occurs
+        this.physics.add.collider(this.happy1, this.sid, () => {
+            this.physics.pause();
+            this.sound.stopAll();
+            //this.sound.play('deathNoise');
+            //this.sid.destroy();
+            
+            this.gameOver = true;
+        });
+
+        // second enemy
+        this.physics.add.collider(this.sad1, this.sid, () => {
+            this.physics.pause();
+            this.sound.stopAll();
+            //this.sound.play('deathNoise');
+            //this.sid.destroy();
+            
+            this.gameOver = true;
+        });
+
 
         if (this.gameOver == true) {
             this.gameOver = true;
