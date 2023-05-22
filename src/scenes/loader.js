@@ -40,7 +40,7 @@ class Loader extends Phaser.Scene {
         this.load.path = "./assets/images/"
         // load images
         this.load.image('tilesetImage', 'tileset.png');
-        // WORK NEEDED: make a FavIcon (.ico file)
+
 
         // load spritesheet file path
         this.load.path = "./assets/spritesheets/"
