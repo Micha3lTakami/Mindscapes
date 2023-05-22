@@ -7,7 +7,7 @@ class Play2 extends Phaser.Scene {
     // create play scene
     create() {
 
-        let scoreConfig = {
+        let playConfig = {
             fontFamily: 'Helvetica',
             fontSize: '24px',
             color: '#F7E7CE',
@@ -69,7 +69,7 @@ class Play2 extends Phaser.Scene {
                 this.scene.start('menuScene');
             }
             if (this.keySPACE.isDown) {
-                GO.destroy();
+                change.destroy();
                 REST.destroy();
                 this.gameOver = false;
                 this.scene.start('playScene2');
