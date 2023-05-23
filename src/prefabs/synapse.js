@@ -15,7 +15,7 @@ class synapse extends Phaser.Physics.Arcade.Sprite {
         this.body.setMaxVelocity(200, 400); // Adjust the values as needed
 
         // Create cursor keys for input
-        this.cursors = scene.input.keyboard.createCursorKeys();
+        this.cursors = scene.input.keyboard.addKeys('W,A,D');
 
         // Set the collision detection for the sprite
         this.setCollideWorldBounds(true);
@@ -49,11 +49,11 @@ class synapse extends Phaser.Physics.Arcade.Sprite {
 
     update() {
         // Check for keyboard input
-        if (this.cursors.left.isDown) {
+        if (this.cursors.A.isDown) {
             this.body.setVelocityX(-100);
             this.anims.play('left', true);
         } 
-        else if (this.cursors.right.isDown) {
+        else if (this.cursors.D.isDown) {
             this.body.setVelocityX(100);
             this.anims.play('right', true);
         }
@@ -62,7 +62,7 @@ class synapse extends Phaser.Physics.Arcade.Sprite {
         }
     
         // Check if the up key is pressed and the sprite can jump
-        if (this.cursors.up.isDown && this.body.onFloor()) {
+        if (this.cursors.W.isDown && this.body.onFloor()) {
             this.body.setVelocityY(-200); // Adjust the value as needed
         }
     }
