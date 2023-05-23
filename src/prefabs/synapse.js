@@ -24,6 +24,9 @@ class synapse extends Phaser.Physics.Arcade.Sprite {
         // Set the drag to control friction
         this.body.setDrag(100, 0); // Adjust the values as needed
 
+        //adjust hitbox size
+        this.body.setSize(12, 30, true);
+
         scene.anims.create({
             key: 'right',
             frames: scene.anims.generateFrameNumbers(spritesheet, { start: 3, end: 3 }),
