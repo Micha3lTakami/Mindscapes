@@ -12,11 +12,13 @@ class Start extends Phaser.Scene{
 
         // start scene text configuration
         let startConfig = {
-            fontFamily: 'Verdana',
-            fontSize: '18px',
-            color: '#f58b57',
-            stroke: '#000',
-            strokeThickness: 4,
+            fontFamily: 'Helvetica',
+            fontWeight: 'bold',
+            stroke: '#e4a672',
+            fontSize: '12px',
+            color: '#e4a672',
+            //stroke: '#000',
+            //strokeThickness: 4,
             allign: 'right',
             padding: {
                 top: 5,

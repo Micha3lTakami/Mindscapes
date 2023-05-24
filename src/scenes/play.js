@@ -45,7 +45,7 @@ class Play extends Phaser.Scene {
         let scoreConfig = {
             fontFamily: 'Helvetica',
             fontSize: '24px',
-            color: '#F7E7CE',
+            color: '#e4a672',
             backgroundColor: '#F5DEB3',
             padding: {
                 x: 10,
@@ -63,7 +63,7 @@ class Play extends Phaser.Scene {
             fontFamily: 'Courier',
             fontSize: '28px',
             backgroundColor: '#000000',
-            color: '#FFFFFF',
+            color: '#e4a672',
             align: 'right',
             padding: {
                 top: 5,
@@ -81,7 +81,7 @@ class Play extends Phaser.Scene {
             fontFamily: 'Courier',
             fontSize: '28px',
             backgroundColor: '#000000',
-            color: '#FFFFFF',
+            color: '#e4a672',
             align: 'right',
             padding: {
                 top: 5,
@@ -136,7 +136,7 @@ class Play extends Phaser.Scene {
             fontFamily: 'Helvetica',
             fontSize: '24px',
             fontWeight: 'bold',
-            color: '#F7E7CE',
+            color: '#e4a672',
             allign: 'center',
             fixedWidth: 0
         }
@@ -144,7 +144,7 @@ class Play extends Phaser.Scene {
         let scoreConfig = {
             fontFamily: 'Helvetica',
             fontSize: '24px',
-            color: '#000',
+            color: '#e4a672',
             backgroundColor: '#F5DEB3',
             padding: {
                 x: 10,
