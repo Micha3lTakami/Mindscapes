@@ -100,7 +100,7 @@ class Play extends Phaser.Scene {
         this.sad1 = new enemy(this, game.config.width * .75, game.config.height/2, 'sad').setOrigin(0.5)
         //this.sad1.setScale(3)
         //could fix animation later
-
+        
         //enable collision for map
         groundLayer.setCollisionByProperty({ collides: true })
         //terrainLayer.setCollisionByProperty({ collides: true })
@@ -108,7 +108,7 @@ class Play extends Phaser.Scene {
         //this.physics.add.collider(this.sid, terrainLayer)
         this.physics.add.collider(this.happy1, groundLayer)
         this.physics.add.collider(this.sad1, groundLayer)
-
+        
         //add camera to follow protag if needed (or just make map scroll)
         this.cameras.main.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
         this.cameras.main.startFollow(this.sid, true, 0.25, 0.25);
