@@ -7,6 +7,8 @@ class enemy extends Phaser.Physics.Arcade.Sprite {
 
         this.setCollideWorldBounds(true);
         this.body.onWorldBounds = true;
+        //set hitbox
+        this.body.setSize(23, 17, true);
 
         this.body.setAllowGravity(true);
         this.body.setGravityY(50);
