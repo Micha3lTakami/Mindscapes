@@ -2,6 +2,14 @@ class Play extends Phaser.Scene {
     constructor() {
         super("playScene");
     }
+    placePlatform(pointer) {
+        if (availablePlatforms > 0) {
+          const x = pointer.x;
+          const y = pointer.y;
+          const newPlat = new platform(this, x, y, 'platform');
+          availablePlatforms--;
+        }
+      }
 
     // create()
     // create play scene
@@ -39,6 +47,8 @@ class Play extends Phaser.Scene {
             align: 'center'
         };
         
+        //platform event listener
+        this.input.on('pointerdown', this.placePlatform, this);
         // create protagonist object
         this.sid = new synapse(this, this.game.config.width / 2, this.game.config.height / 2, 'synapse').setOrigin(0.5, 0.5);
         this.sid.setFriction(0.2, 0.2);
