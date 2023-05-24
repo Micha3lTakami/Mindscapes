@@ -4,6 +4,7 @@ class platform extends Phaser.Physics.Arcade.Sprite {
   
       // Add the platform to the existing scene and enable physics
       scene.add.existing(this);
+      this.setScale(0.5);
       scene.physics.add.existing(this);
   
       // Customize the platform's physics properties
@@ -18,7 +19,7 @@ class platform extends Phaser.Physics.Arcade.Sprite {
       scene.physics.add.collider(scene.sid, this);
   
       // Set up block preview
-      this.setAlpha(0.5);
+      //this.setAlpha(0.5);
       this.previewMode = false;
   
       // Set up cursor over block detection

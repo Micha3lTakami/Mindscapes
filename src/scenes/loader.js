@@ -42,6 +42,7 @@ class Loader extends Phaser.Scene {
         this.load.image('tilesetImage', 'basic-platformer-tileset.png');
         this.load.image('title_screen', 'title_screen.png');
         this.load.image('platform', 'block.png' );
+        this.load.image('X', 'xEmoji.png');
 
         //load fonts
         this.load.script('webfont', 'https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js');
