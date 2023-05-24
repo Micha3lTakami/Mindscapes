@@ -4,10 +4,15 @@ class Play extends Phaser.Scene {
     }
     placePlatform(pointer) {
         if (availablePlatforms > 0) {
-          const x = pointer.x;
-          const y = pointer.y;
-          const newPlat = new platform(this, x, y, 'platform');
+          const worldX = pointer.worldX;
+          const worldY = pointer.worldY;
+      
+          //const x = worldX - this.cameras.main.scrollX;
+          //const y = worldY - this.cameras.main.scrollY;
+      
+          const newPlat = new platform(this, worldX, worldY, 'platform');
           availablePlatforms--;
+          console.log('avail plats: ' + availablePlatforms)
         }
       }
 
