@@ -13,7 +13,7 @@ class Start extends Phaser.Scene{
         // start scene text configuration
         let startConfig = {
             fontFamily: 'Verdana',
-            fontSize: '35px',
+            fontSize: '18px',
             color: '#f58b57',
             stroke: '#000',
             strokeThickness: 4,
@@ -29,7 +29,7 @@ class Start extends Phaser.Scene{
         this.add.text(game.config.width/2, game.config.height/2, 'Press (ENTER) to continue', startConfig).setOrigin(0.5);
         this.add.text(game.config.width/2, game.config.height*.75, 'Game Created by ', startConfig).setOrigin(0.5);
         let names = this.add.text(game.config.width/2, game.config.height*.85, 'Michael Takami, Alejanda Sicaros, Jacob Penlan, and Jessica Zogaric', startConfig).setOrigin(0.5);
-        names.setScale(0.75)
+        //names.setScale(0.75)
         
 
         // define keys

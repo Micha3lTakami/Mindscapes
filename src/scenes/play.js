@@ -21,16 +21,17 @@ class Play extends Phaser.Scene {
         
         //add map tilesprite
         const map = this.add.tilemap('tilemapJSON');
-        const tileset = map.addTilesetImage('tileset', 'tilesetImage');
+        const brain_set = map.addTilesetImage('brain_set', 'tilesetImage');
         
 
         
 
         //add layers for tile
-        const bgLayer = map.createLayer('Sky', tileset, 0, 0);
-        const terrainLayer = map.createLayer('Decoration', tileset, 0, 0);
-        const groundLayer = map.createLayer('Ground', tileset, 0, 0);
-        const terrain2Layer = map.createLayer('Decoration 2', tileset, 0, 0);
+        const bgLayer = map.createLayer('Sky', brain_set, 0, 0);
+        const groundLayer = map.createLayer('Ground', brain_set, 0, 0);
+        const terrainLayer = map.createLayer('Decoration', brain_set, 0, 0);
+        
+        //const terrain2Layer = map.createLayer('Decoration 2', brain_set, 0, 0);
         
         /*groundLayer.setCollisionByProperty({ is_placeable: true });
         this.physics.add.collider(this.sid, groundLayer);*/
@@ -52,12 +53,12 @@ class Play extends Phaser.Scene {
         // create protagonist object
         this.sid = new synapse(this, this.game.config.width / 2, this.game.config.height / 2, 'synapse').setOrigin(0.5, 0.5);
         this.sid.setFriction(0.2, 0.2);
-        this.sid.setScale(2);
+        //this.sid.setScale(2);
         
         this.happy1 = new enemy(this, game.config.width/3, game.config.height/2, 'happy').setOrigin(0.5)
-        this.happy1.setScale(3);
+        //this.happy1.setScale(3);
         this.sad1 = new enemy(this, game.config.width * .75, game.config.height/2, 'sad').setOrigin(0.5)
-        this.sad1.setScale(3)
+        //this.sad1.setScale(3)
         //could fix animation later
 
         //enable collision for map

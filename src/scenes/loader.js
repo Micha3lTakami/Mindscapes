@@ -39,7 +39,7 @@ class Loader extends Phaser.Scene {
         // load image file path
         this.load.path = "./assets/images/"
         // load images
-        this.load.image('tilesetImage', 'tileset.png');
+        this.load.image('tilesetImage', 'basic-platformer-tileset.png');
         this.load.image('title_screen', 'title_screen.png');
         this.load.image('platform', 'block.png' );
 
