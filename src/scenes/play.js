@@ -47,6 +47,46 @@ class Play extends Phaser.Scene {
             },
             align: 'center'
         };
+
+        // Initialize timer
+        this.counter = game.settings.gameTimer / 1000;
+        this.startTime = this.time.now; // Resets every 1000 milliseconds
+
+        // Display timer
+        this.timerConfig = {
+            fontFamily: 'Courier',
+            fontSize: '28px',
+            backgroundColor: '#000000',
+            color: '#FFFFFF',
+            align: 'right',
+            padding: {
+                top: 5,
+                bottom: 5,
+            },
+            fixedWidth: 100 
+            }
+            this.timeLeft = this.add.text(130, borderUISize + borderPadding - 30, this.counter, this.timerConfig);
+            this.timeLeft.setScrollFactor(0);
+            this.timeLeft.setAlpha(0.7);
+            this.timerConfig.fixedWidth = 0;
+
+        // Display blocks left
+        this.blocksConfig = {
+            fontFamily: 'Courier',
+            fontSize: '28px',
+            backgroundColor: '#000000',
+            color: '#FFFFFF',
+            align: 'right',
+            padding: {
+                top: 5,
+                bottom: 5,
+            },
+            fixedWidth: 100 
+            }
+            this.blocksLeft = this.add.text(260, borderUISize + borderPadding - 30, availablePlatforms, this.blocksConfig);
+            this.blocksLeft.setScrollFactor(0);
+            this.blocksLeft.setAlpha(0.7);
+            this.blocksConfig.fixedWidth = 0;
         
         //platform event listener
         this.input.on('pointerdown', this.placePlatform, this);
@@ -107,6 +147,15 @@ class Play extends Phaser.Scene {
             align: 'center'
         };
         this.sid.update();
+
+        // Scene timer
+        let nowTime = this.time.now
+        if(nowTime > (this.startTime + 1000)) {
+            this.counter -= 1;
+            this.startTime = nowTime
+            this.timeLeft.text = this.counter;
+        }
+
 
         // detect collisions with protagonist and pause scene when collision occurs
         this.physics.add.collider(this.happy1, this.sid, () => {
