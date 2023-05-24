@@ -12,6 +12,7 @@ class Play extends Phaser.Scene {
       
           const newPlat = new platform(this, worldX, worldY, 'platform');
           availablePlatforms--;
+          blocksLeft.text = availablePlatforms;
           console.log('avail plats: ' + availablePlatforms)
         }
       }
@@ -88,9 +89,9 @@ class Play extends Phaser.Scene {
             },
             fixedWidth: 100 
             }
-            this.blocksLeft = this.add.text(260, borderUISize + borderPadding - 30, availablePlatforms, this.blocksConfig);
-            this.blocksLeft.setScrollFactor(0);
-            this.blocksLeft.setAlpha(0.7);
+            blocksLeft = this.add.text(260, borderUISize + borderPadding - 30, availablePlatforms, this.blocksConfig);
+            blocksLeft.setScrollFactor(0);
+            blocksLeft.setAlpha(0.7);
             this.blocksConfig.fixedWidth = 0;
         
         //platform event listener
@@ -156,9 +157,11 @@ class Play extends Phaser.Scene {
         // Scene timer
         let nowTime = this.time.now
         if(nowTime > (this.startTime + 1000)) {
-            this.counter -= 1;
-            this.startTime = nowTime
-            this.timeLeft.text = this.counter;
+            if(this.counter > 0) {
+                this.counter -= 1;
+                this.startTime = nowTime
+                this.timeLeft.text = this.counter;
+            }   
         }
 
 
@@ -182,6 +185,11 @@ class Play extends Phaser.Scene {
             this.gameOver = true;
         });
 
+        if (this.counter == 0) {
+            this.physics.pause();
+            this.sound.stopAll();
+            this.gameOver = true;
+        }
 
         if (this.gameOver == true) {
             this.gameOver = true;
