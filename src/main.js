@@ -12,7 +12,7 @@ let config = {
     },
     // set parent container for where playscreen should be displayed on webpage
     parent : 'mindscape',
-    height: 320,
+    height: 320  ,
     width: 480,
     scale: {
         autoCenter: Phaser.Scale.CENTER_BOTH
@@ -27,7 +27,7 @@ let config = {
             }
         }
     },
-    zoom: 2,
+    //zoom: 2,
     scene: [ Loader, Menu, Play, Play2, Start ]
 }
 
