@@ -43,6 +43,10 @@ class Loader extends Phaser.Scene {
         this.load.image('title_screen', 'title_screen.png');
         this.load.image('platform', 'block.png' );
 
+        //load fonts
+        this.load.script('webfont', 'https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js');
+
+
 
         // load spritesheet file path
         this.load.path = "./assets/spritesheets/"
