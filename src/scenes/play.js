@@ -17,6 +17,7 @@ class Play extends Phaser.Scene {
         }
       }
 
+      
     // create()
     // create play scene
     create() {
@@ -37,6 +38,19 @@ class Play extends Phaser.Scene {
         const groundLayer = map.createLayer('Ground', brain_set, 0, 0);
         const terrainLayer = map.createLayer('Decoration', brain_set, 0, 0);
         
+        /*
+        // Create an object layer for the enemy spawns
+        const objectLayer = map.getObjectLayer('Object Layer 1');
+
+        // Spawn enemies at each object's location in the object layer
+        objectLayer.objects.forEach(object => {
+        if (object.type === 'sad_spawn') {
+            const enemyX = object.x + object.width / 2;
+            const enemyY = object.y + object.height / 2;
+            const newEnemy = new enemy(this, enemyX, enemyY, 'sad').setOrigin(0.5);
+        }
+        });
+        /*
         //const terrain2Layer = map.createLayer('Decoration 2', brain_set, 0, 0);
         
         /*groundLayer.setCollisionByProperty({ is_placeable: true });
@@ -125,6 +139,15 @@ class Play extends Phaser.Scene {
         // reserve keys to navigate to menu or advance to next level
         this.keyM = this.input.keyboard.addKey('M');
         this.keySPACE = this.input.keyboard.addKey('SPACE');
+        
+        // WORK IN PROGRESS: fullscreen
+        /*this.input.keyboard.on('keydown-' + 'F', () => { 
+         if (this.scale.isFullscreen) {
+            this.scale.stopFullscreen();
+        } else {
+            this.scale.startFullscreen();
+        }
+        });*/
     }
     
 
