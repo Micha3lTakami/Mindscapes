@@ -2,6 +2,7 @@ class Play extends Phaser.Scene {
     constructor() {
         super("playScene");
     }
+    
     placePlatform(pointer) {
         if (availablePlatforms > 0) {
           const worldX = pointer.worldX;
@@ -23,7 +24,7 @@ class Play extends Phaser.Scene {
     create() {
         /*let gameMusic = this.sound.add('gameMusic', { loop: true });
         gameMusic.play();*/
-
+        availablePlatforms = 10;
         
         
         //add map tilesprite
