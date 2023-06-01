@@ -22,10 +22,11 @@ class synapse extends Phaser.Physics.Arcade.Sprite {
         this.body.onWorldBounds = true;
 
         // Set the drag to control friction
-        this.body.setDrag(100, 0); // Adjust the values as needed
+        this.body.setDrag(500, 0); // Adjust the values as needed
 
         //adjust hitbox size
         this.body.setSize(12, 30, true);
+        //this.setFriction(.99, .99);
 
         scene.anims.create({
             key: 'right',
