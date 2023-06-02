@@ -15,9 +15,7 @@ class endflag extends Phaser.Physics.Arcade.Sprite {
 
         this.body.setAllowGravity(true);
         this.body.setGravityY(50);
-
-
-
+        
         scene.anims.create({
             key: 'wave',
             frames: scene.anims.generateFrameNumbers(spritesheet, { start: 0, end: 4 }),
