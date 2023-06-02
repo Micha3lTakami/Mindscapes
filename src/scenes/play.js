@@ -7,11 +7,7 @@ class Play extends Phaser.Scene {
     placePlatform(pointer) {
         if (availablePlatforms > 0) {
           const worldX = pointer.worldX;
-          const worldY = pointer.worldY;
-      
-          //const x = worldX - this.cameras.main.scrollX;
-          //const y = worldY - this.cameras.main.scrollY;
-      
+          const worldY = pointer.worldY;  
           const newPlat = new platform(this, worldX, worldY, 'platform');
           availablePlatforms--;
           blocksLeft.text = availablePlatforms;
@@ -23,28 +19,39 @@ class Play extends Phaser.Scene {
     // create()
     // create play scene
     create() {
+        // *******************************
+        // CONFIGURATIONS  
+        // *******************************
         
-        let gameMusic = this.sound.add('levelMusic', { loop: true });
-        gameMusic.setVolume(0.5);
-        gameMusic.play();
+        // Display timer Configuration
+        this.timerConfig = {
+            fontFamily: 'Courier',
+            fontSize: '28px',
+            backgroundColor: '#000000',
+            color: '#e4a672',
+            align: 'right',
+            padding: {
+                top: 5,
+                bottom: 5,
+            },
+            fixedWidth: 100 
+        }
 
-        availablePlatforms = 10;
+        // Display blocks left configuration
+        this.blocksConfig = {
+            fontFamily: 'Courier',
+            fontSize: '28px',
+            backgroundColor: '#000000',
+            color: '#e4a672',
+            align: 'right',
+            padding: {
+                top: 5,
+                bottom: 5,
+            },
+            fixedWidth: 100 
+        }
         
-        
-        //add map tilesprite
-        const map = this.add.tilemap('tilemapJSON');
-        const brain_set = map.addTilesetImage('brain_set', 'tilesetImage');
-        
-
-        
-
-        //add layers for tile
-        const bgLayer = map.createLayer('Sky', brain_set, 0, 0);
-        const groundLayer = map.createLayer('Ground', brain_set, 0, 0);
-        const terrainLayer = map.createLayer('Decoration', brain_set, 0, 0);
-        
-
-
+        //Base Score Configuration
         let scoreConfig = {
             fontFamily: 'Helvetica',
             fontSize: '24px',
@@ -57,55 +64,58 @@ class Play extends Phaser.Scene {
             align: 'center'
         };
 
+        // *******************************
+        // CREATE OBJECTS 
+        // *******************************
+        
+        // Timer UI
+        this.timeLeft = this.add.text(130, borderUISize + borderPadding - 30, this.counter, this.timerConfig);
+        this.timeLeft.setScrollFactor(0);
+        this.timeLeft.setAlpha(0.7);
+        this.timerConfig.fixedWidth = 0;
+
+        // Blocks remaining UI
+        blocksLeft = this.add.text(260, borderUISize + borderPadding - 30, availablePlatforms, this.blocksConfig);
+        blocksLeft.setScrollFactor(0);
+        blocksLeft.setAlpha(0.7);
+        this.blocksConfig.fixedWidth = 0;
+         
+        // Game Music and Settings
+        let gameMusic = this.sound.add('levelMusic', { loop: true });
+        gameMusic.setVolume(0.5);
+        gameMusic.setRate(0.6);
+        gameMusic.play();
+
+        // reset the availablePlatforms value
+        availablePlatforms = 10;
+        
+        
+        //add map tilesprite
+        const map = this.add.tilemap('tilemapJSON');
+        const brain_set = map.addTilesetImage('brain_set', 'tilesetImage');
+
+        //add layers for tile
+        const bgLayer = map.createLayer('Sky', brain_set, 0, 0);
+        const groundLayer = map.createLayer('Ground', brain_set, 0, 0);
+        const terrainLayer = map.createLayer('Decoration', brain_set, 0, 0);
+
         // Initialize timer
         this.counter = game.settings.gameTimer / 1000;
         this.startTime = this.time.now; // Resets every 1000 milliseconds
 
-        // Display timer
-        this.timerConfig = {
-            fontFamily: 'Courier',
-            fontSize: '28px',
-            backgroundColor: '#000000',
-            color: '#e4a672',
-            align: 'right',
-            padding: {
-                top: 5,
-                bottom: 5,
-            },
-            fixedWidth: 100 
-            }
-            this.timeLeft = this.add.text(130, borderUISize + borderPadding - 30, this.counter, this.timerConfig);
-            this.timeLeft.setScrollFactor(0);
-            this.timeLeft.setAlpha(0.7);
-            this.timerConfig.fixedWidth = 0;
-
-        // Display blocks left
-        this.blocksConfig = {
-            fontFamily: 'Courier',
-            fontSize: '28px',
-            backgroundColor: '#000000',
-            color: '#e4a672',
-            align: 'right',
-            padding: {
-                top: 5,
-                bottom: 5,
-            },
-            fixedWidth: 100 
-            }
-            blocksLeft = this.add.text(260, borderUISize + borderPadding - 30, availablePlatforms, this.blocksConfig);
-            blocksLeft.setScrollFactor(0);
-            blocksLeft.setAlpha(0.7);
-            this.blocksConfig.fixedWidth = 0;
-        
         //platform event listener
         this.input.on('pointerdown', this.placePlatform, this);
+        
         // create protagonist object
         this.sid = new synapse(this, this.game.config.width / 2, this.game.config.height / 2, 'synapse').setOrigin(0.5, 0.5);
         this.sid.setFriction(0.2, 0.2);
-        //this.sid.setScale(2);
-        this.flag = new endflag(this, this.game.config.width*.6, this.game.config.height/2, 'brainFlag');
-        this.happy1 = new enemy(this, game.config.width/3, game.config.height/2, 'happy').setOrigin(0.5)
 
+        // create End Flag and set game over state
+        this.flag = new endflag(this, this.game.config.width*.6, this.game.config.height/2, 'brainFlag');
+        this.gameOver = false;
+        
+        // create enemies
+        this.happy1 = new enemy(this, game.config.width/3, game.config.height/2, 'happy').setOrigin(0.5)
         this.sad1 = new enemy(this, game.config.width * .75, game.config.height/2, 'sad').setOrigin(0.5)
         //could fix animation later
         
@@ -120,8 +130,6 @@ class Play extends Phaser.Scene {
         this.cameras.main.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
         this.cameras.main.startFollow(this.sid, true, 0.25, 0.25);
         this.physics.world.bounds.setTo(0, 0, map.widthInPixels, map.heightInPixels);
-
-        this.gameOver = false;
 
         // reserve keys to navigate to menu or advance to next level
         this.keyM = this.input.keyboard.addKey('M');
@@ -201,9 +209,13 @@ class Play extends Phaser.Scene {
 
         if (this.gameOver == true) {
             this.gameOver = true;
-            let change = this.add.text(w / 2, h / 4, 'Level Complete!', playConfig).setOrigin(0.5);
-            let REST = this.add.text(w / 2, h / 3, 'Press (SPACE) for next level or (M) for Menu', playConfig).setOrigin(0.5);
-    
+            let change = this.add.text(this.cameras.main.centerX, this.cameras.main.centerY, 'Level Complete!', playConfig).setOrigin(0.5);
+            let REST = this.add.text(this.cameras.main.centerX, this.cameras.main.centerY + 50, 'Press (SPACE) for next level or (M) for Menu', playConfig).setOrigin(0.5);
+            
+            // Set scroll factor to 0 to fix the position of the text so text doesn't move on camera scroll
+            change.setScrollFactor(0);
+            REST.setScrollFactor(0);
+
             if (this.keyM.isDown) {
                 change.destroy();
                 REST.destroy();
