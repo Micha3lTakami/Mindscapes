@@ -44,6 +44,7 @@ class Start extends Phaser.Scene{
     update() {
         if (Phaser.Input.Keyboard.JustDown(keyENTER)) {
             // NEEDS TESTING: Uses callback to start the next scene
+            this.sound.play('select');
             this.cameras.main.fadeOut(1000,10,20,30,);
             this.time.delayedCall(1100, () =>{
                 // restyle border for next scene

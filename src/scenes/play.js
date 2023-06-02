@@ -23,8 +23,11 @@ class Play extends Phaser.Scene {
     // create()
     // create play scene
     create() {
-        /*let gameMusic = this.sound.add('gameMusic', { loop: true });
-        gameMusic.play();*/
+        
+        let gameMusic = this.sound.add('levelMusic', { loop: true });
+        gameMusic.setVolume(0.5);
+        gameMusic.play();
+
         availablePlatforms = 10;
         
         
@@ -102,9 +105,8 @@ class Play extends Phaser.Scene {
         //this.sid.setScale(2);
         this.flag = new endflag(this, this.game.config.width*.6, this.game.config.height/2, 'brainFlag');
         this.happy1 = new enemy(this, game.config.width/3, game.config.height/2, 'happy').setOrigin(0.5)
-        //this.happy1.setScale(3);
+
         this.sad1 = new enemy(this, game.config.width * .75, game.config.height/2, 'sad').setOrigin(0.5)
-        //this.sad1.setScale(3)
         //could fix animation later
         
         //enable collision for map

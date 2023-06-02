@@ -24,9 +24,21 @@ class synapse extends Phaser.Physics.Arcade.Sprite {
         // Set the drag to control friction
         this.body.setDrag(500, 0); // Adjust the values as needed
 
-        //adjust hitbox size
+        // Adjust hitbox size
         this.body.setSize(12, 30, true);
-        //this.setFriction(.99, .99);
+
+        // Load sounds
+        this.walkLeftSound = scene.sound.add('walkLeft', {loop: true});
+        this.walkLeftSound.setRate(1.5);
+        
+        this.walkRightSound = scene.sound.add('walkRight', {loop : true});
+        this.walkRightSound.setRate(1.5);
+        
+        this.jumpSound = scene.sound.add('jump');
+
+        // Create sound variables
+        this.isWalkingLeft = false;
+        this.isWalkingRight = false;
 
         scene.anims.create({
             key: 'right',
@@ -46,9 +58,6 @@ class synapse extends Phaser.Physics.Arcade.Sprite {
             frameRate: 10,
             repeat: -1
         });
-        
-
-
     }
 
     update() {
@@ -56,18 +65,33 @@ class synapse extends Phaser.Physics.Arcade.Sprite {
         if (this.cursors.A.isDown) {
             this.body.setVelocityX(-100);
             this.anims.play('left', true);
-        } 
-        else if (this.cursors.D.isDown) {
+            if (!this.isWalkingLeft) {
+                this.walkLeftSound.play();
+                this.walkRightSound.stop();
+                this.isWalkingLeft = true;
+                this.isWalkingRight = false;
+            }
+        } else if (this.cursors.D.isDown) {
             this.body.setVelocityX(100);
             this.anims.play('right', true);
-        }
-        else{
+            if (!this.isWalkingRight) {
+                this.walkRightSound.play();
+                this.walkLeftSound.stop();
+                this.isWalkingRight = true;
+                this.isWalkingLeft = false;
+            }
+        } else {
             this.anims.play('idle', true);
+            this.walkLeftSound.stop();
+            this.walkRightSound.stop();
+            this.isWalkingLeft = false;
+            this.isWalkingRight = false;
         }
-    
+
         // Check if the up key is pressed and the sprite can jump
         if (this.cursors.W.isDown && this.body.onFloor()) {
             this.body.setVelocityY(-200); // Adjust the value as needed
+            this.jumpSound.play();
         }
     }
 }

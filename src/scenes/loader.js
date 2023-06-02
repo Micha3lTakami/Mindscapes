@@ -32,9 +32,15 @@ class Loader extends Phaser.Scene {
         this.load.tilemapTiledJSON('tilemapJSON', './assets/tilemap_items/mindscapes_tilemaps.json');
 
         // load audio file path
-        this.load.path  = './assets/audio/'
+        this.load.path  = './assets/sounds/'
         // load audio
-        //this.load.audio('sfx_select', 'menu_select.wav');
+        this.load.audio('levelMusic', 'brainMusic.mp3');
+        this.load.audio('menuMusic','menuMusic.mp3');
+        this.load.audio('select','selecter.mp3');
+        this.load.audio('jump','slimeJump.mp3');
+        this.load.audio('walkLeft','stepLeft.mp3');
+        this.load.audio('walkRight','stepRight.mp3');
+
 
         // load image file path
         this.load.path = "./assets/images/"
