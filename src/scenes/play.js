@@ -2,89 +2,20 @@ class Play extends Phaser.Scene {
     constructor() {
         super("playScene");
 
-    }
-    
-    placePlatform(pointer) {
-        if (availablePlatforms > 0) {
-          const worldX = pointer.worldX;
-          const worldY = pointer.worldY;  
-          const newPlat = new platform(this, worldX, worldY, 'platform');
-          availablePlatforms--;
-          blocksLeft.text = availablePlatforms;
-          console.log('avail plats: ' + availablePlatforms)
-        }
-      }
-
-      
+    } 
     // create()
     // create play scene
     create() {
-        // *******************************
-        // CONFIGURATIONS  
-        // *******************************
-        
-        // Display timer Configuration
-        this.timerConfig = {
-            fontFamily: 'Courier',
-            fontSize: '28px',
-            backgroundColor: '#000000',
-            color: '#e4a672',
-            align: 'right',
-            padding: {
-                top: 5,
-                bottom: 5,
-            },
-            fixedWidth: 100 
-        }
-
-        // Display blocks left configuration
-        this.blocksConfig = {
-            fontFamily: 'Courier',
-            fontSize: '28px',
-            backgroundColor: '#000000',
-            color: '#e4a672',
-            align: 'right',
-            padding: {
-                top: 5,
-                bottom: 5,
-            },
-            fixedWidth: 100 
-        }
-        
-        //Base Score Configuration
-        let scoreConfig = {
-            fontFamily: 'Helvetica',
-            fontSize: '24px',
-            color: '#e4a672',
-            backgroundColor: '#F5DEB3',
-            padding: {
-                x: 10,
-                y: 5
-            },
-            align: 'center'
-        };
 
         // *******************************
         // CREATE OBJECTS 
         // *******************************
-        
-        // Timer UI
-        this.timeLeft = this.add.text(130, borderUISize + borderPadding - 30, this.counter, this.timerConfig);
-        this.timeLeft.setScrollFactor(0);
-        this.timeLeft.setAlpha(0.7);
-        this.timerConfig.fixedWidth = 0;
-
-        // Blocks remaining UI
-        blocksLeft = this.add.text(260, borderUISize + borderPadding - 30, availablePlatforms, this.blocksConfig);
-        blocksLeft.setScrollFactor(0);
-        blocksLeft.setAlpha(0.7);
-        this.blocksConfig.fixedWidth = 0;
-         
+     
         // Game Music and Settings
         let gameMusic = this.sound.add('levelMusic', { loop: true });
         gameMusic.setVolume(0.5);
         gameMusic.setRate(0.6);
-        gameMusic.play();
+        //gameMusic.play();
 
         // reset the availablePlatforms value
         availablePlatforms = 10;
@@ -130,6 +61,64 @@ class Play extends Phaser.Scene {
         this.cameras.main.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
         this.cameras.main.startFollow(this.sid, true, 0.25, 0.25);
         this.physics.world.bounds.setTo(0, 0, map.widthInPixels, map.heightInPixels);
+
+                // *******************************
+        // CONFIGURATIONS  
+        // *******************************
+        
+        // Display timer Configuration
+        this.timerConfig = {
+            fontFamily: 'Courier',
+            fontSize: '28px',
+            backgroundColor: '#000000',
+            color: '#e4a672',
+            align: 'right',
+            padding: {
+                top: 5,
+                bottom: 5,
+            },
+            fixedWidth: 100 
+        }
+               
+        // Timer UI
+        this.timeLeft = this.add.text(130, borderUISize + borderPadding - 30, this.counter, this.timerConfig);
+        this.timeLeft.setScrollFactor(0);
+        //this.timeLeft.setAlpha(0.7);
+        this.timerConfig.fixedWidth = 0;
+
+        // Display blocks left configuration
+        this.blocksConfig = {
+            fontFamily: 'Courier',
+            fontSize: '28px',
+            backgroundColor: '#000000',
+            color: '#e4a672',
+            align: 'right',
+            padding: {
+                top: 5,
+                bottom: 5,
+            },
+            fixedWidth: 100 
+        }
+        
+        // Blocks remaining UI
+        this.blocksLeft = this.add.text(260, borderUISize + borderPadding - 30, availablePlatforms, this.blocksConfig);
+        this.blocksLeft.setScrollFactor(0);
+        //blocksLeft.setAlpha(0.7);
+        this.blocksConfig.fixedWidth = 0;
+        
+        //Base Score Configuration
+        let scoreConfig = {
+            fontFamily: 'Helvetica',
+            fontSize: '24px',
+            color: '#e4a672',
+            backgroundColor: '#F5DEB3',
+            padding: {
+                x: 10,
+                y: 5
+            },
+            align: 'center'
+        };
+
 
         // reserve keys to navigate to menu or advance to next level
         this.keyM = this.input.keyboard.addKey('M');
@@ -230,4 +219,14 @@ class Play extends Phaser.Scene {
             }
         }
     }
+    placePlatform(pointer) {
+        if (availablePlatforms > 0) {
+          const worldX = pointer.worldX;
+          const worldY = pointer.worldY;  
+          const newPlat = new platform(this, worldX, worldY, 'platform');
+          availablePlatforms--;
+          this.blocksLeft.text = availablePlatforms;
+          console.log('avail plats: ' + availablePlatforms)
+        }
+      }
 }

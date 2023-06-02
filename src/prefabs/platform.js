@@ -33,7 +33,7 @@ class platform extends Phaser.Physics.Arcade.Sprite {
   
       // Increment the available platforms count
       availablePlatforms++;
-      blocksLeft.text = availablePlatforms;
+      this.scene.blocksLeft.text = availablePlatforms;
     }
   
     checkCursorOver(pointer) {
