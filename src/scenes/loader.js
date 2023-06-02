@@ -57,7 +57,7 @@ class Loader extends Phaser.Scene {
         this.load.spritesheet('anger', 'anger.png', {frameWidth: 32, frameHeight: 32, startFrame: 0, endFrame: 2});
         this.load.spritesheet('happy', 'happiness.png', {frameWidth: 32, frameHeight: 32, startFrame: 0, endFrame: 2});
         this.load.spritesheet('sad', 'sadness.png', {frameWidth: 32, frameHeight: 32, startFrame: 0, endFrame: 4});
-
+        this.load.spritesheet('brainFlag', 'brainFlag.png', {frameWidth: 32, frameHeight: 50, startFrame: 0, endFrame: 4});
         
         
         

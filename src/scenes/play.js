@@ -1,6 +1,7 @@
 class Play extends Phaser.Scene {
     constructor() {
         super("playScene");
+
     }
     
     placePlatform(pointer) {
@@ -39,23 +40,7 @@ class Play extends Phaser.Scene {
         const groundLayer = map.createLayer('Ground', brain_set, 0, 0);
         const terrainLayer = map.createLayer('Decoration', brain_set, 0, 0);
         
-        /*
-        // Create an object layer for the enemy spawns
-        const objectLayer = map.getObjectLayer('Object Layer 1');
 
-        // Spawn enemies at each object's location in the object layer
-        objectLayer.objects.forEach(object => {
-        if (object.type === 'sad_spawn') {
-            const enemyX = object.x + object.width / 2;
-            const enemyY = object.y + object.height / 2;
-            const newEnemy = new enemy(this, enemyX, enemyY, 'sad').setOrigin(0.5);
-        }
-        });
-        /*
-        //const terrain2Layer = map.createLayer('Decoration 2', brain_set, 0, 0);
-        
-        /*groundLayer.setCollisionByProperty({ is_placeable: true });
-        this.physics.add.collider(this.sid, groundLayer);*/
 
         let scoreConfig = {
             fontFamily: 'Helvetica',
@@ -115,7 +100,7 @@ class Play extends Phaser.Scene {
         this.sid = new synapse(this, this.game.config.width / 2, this.game.config.height / 2, 'synapse').setOrigin(0.5, 0.5);
         this.sid.setFriction(0.2, 0.2);
         //this.sid.setScale(2);
-        
+        this.flag = new endflag(this, this.game.config.width*.6, this.game.config.height/2, 'brainFlag');
         this.happy1 = new enemy(this, game.config.width/3, game.config.height/2, 'happy').setOrigin(0.5)
         //this.happy1.setScale(3);
         this.sad1 = new enemy(this, game.config.width * .75, game.config.height/2, 'sad').setOrigin(0.5)
@@ -124,11 +109,10 @@ class Play extends Phaser.Scene {
         
         //enable collision for map
         groundLayer.setCollisionByProperty({ collides: true })
-        //terrainLayer.setCollisionByProperty({ collides: true })
         this.physics.add.collider(this.sid, groundLayer)
-        //this.physics.add.collider(this.sid, terrainLayer)
         this.physics.add.collider(this.happy1, groundLayer)
         this.physics.add.collider(this.sad1, groundLayer)
+        this.physics.add.collider(this.flag, groundLayer)
         
         //add camera to follow protag if needed (or just make map scroll)
         this.cameras.main.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
@@ -141,14 +125,7 @@ class Play extends Phaser.Scene {
         this.keyM = this.input.keyboard.addKey('M');
         this.keySPACE = this.input.keyboard.addKey('SPACE');
         
-        // WORK IN PROGRESS: fullscreen
-        /*this.input.keyboard.on('keydown-' + 'F', () => { 
-         if (this.scale.isFullscreen) {
-            this.scale.stopFullscreen();
-        } else {
-            this.scale.startFullscreen();
-        }
-        });*/
+  
     }
     
 
@@ -156,6 +133,7 @@ class Play extends Phaser.Scene {
     // update()
     // menu update function
     update() {
+ 
         let playConfig = {
             fontFamily: 'Helvetica',
             fontSize: '24px',
@@ -207,6 +185,10 @@ class Play extends Phaser.Scene {
             //this.sid.destroy();
             
             this.gameOver = true;
+        });
+
+        this.physics.add.collider(this.sid, this.flag, () => {
+            this.scene.start('playScene2');
         });
 
         if (this.counter == 0) {
