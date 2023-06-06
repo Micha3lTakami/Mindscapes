@@ -62,7 +62,7 @@ class Play extends Phaser.Scene {
         this.cameras.main.startFollow(this.sid, true, 0.25, 0.25);
         this.physics.world.bounds.setTo(0, 0, map.widthInPixels, map.heightInPixels);
 
-                // *******************************
+        // *******************************
         // CONFIGURATIONS  
         // *******************************
         
@@ -154,7 +154,6 @@ class Play extends Phaser.Scene {
             align: 'center'
         };
         this.sid.update();
-
         // Scene timer
         let nowTime = this.time.now
         if(nowTime > (this.startTime + 1000)) {
@@ -164,7 +163,7 @@ class Play extends Phaser.Scene {
                 this.timeLeft.text = this.counter;
             }   
         }
-
+        this.blocksLeft.text = availablePlatforms;
 
         // detect collisions with protagonist and pause scene when collision occurs
         this.physics.add.collider(this.happy1, this.sid, () => {
@@ -223,9 +222,9 @@ class Play extends Phaser.Scene {
         if (availablePlatforms > 0) {
           const worldX = pointer.worldX;
           const worldY = pointer.worldY;  
-          const newPlat = new platform(this, worldX, worldY, 'platform');
+          const newPlat = new platform(this, worldX, worldY, 'platform').setOrigin(0.5);
+          newPlat.setScale(0.5);
           availablePlatforms--;
-          this.blocksLeft.text = availablePlatforms;
           console.log('avail plats: ' + availablePlatforms)
         }
       }
