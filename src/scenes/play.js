@@ -123,7 +123,12 @@ class Play extends Phaser.Scene {
         // reserve keys to navigate to menu or advance to next level
         this.keyM = this.input.keyboard.addKey('M');
         this.keySPACE = this.input.keyboard.addKey('SPACE');
-        
+        this.anims.create({
+            key: 'Placed',
+            frames: this.anims.generateFrameNumbers('jumpBlock', { start: 0, end: 5 }),
+            frameRate: 10,
+            repeat: -1
+            });
   
     }
     
@@ -222,8 +227,8 @@ class Play extends Phaser.Scene {
         if (availablePlatforms > 0) {
           const worldX = pointer.worldX;
           const worldY = pointer.worldY;  
-          const newPlat = new platform(this, worldX, worldY, 'platform').setOrigin(0.5);
-          newPlat.setScale(0.5);
+          const newPlat = new JumpBlock(this, worldX, worldY, 'jumpBlock').setOrigin(0.5);
+          //newPlat.setScale(0.75);
           availablePlatforms--;
           console.log('avail plats: ' + availablePlatforms)
         }
