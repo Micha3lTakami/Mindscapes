@@ -29,6 +29,7 @@ class Play extends Phaser.Scene {
         const bgLayer = map.createLayer('Sky', brain_set, 0, 0);
         const groundLayer = map.createLayer('Ground', brain_set, 0, 0);
         const terrainLayer = map.createLayer('Decoration', brain_set, 0, 0);
+        const spikeLayer = map.createLayer('Spike', brain_set, 0, 0);
 
         // Initialize timer
         this.counter = game.settings.gameTimer / 1000;
