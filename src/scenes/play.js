@@ -39,7 +39,7 @@ class Play extends Phaser.Scene {
         this.input.on('pointerdown', this.placePlatform, this);
         
         // create protagonist object
-        this.sid = new synapse(this, this.game.config.width / 2, this.game.config.height / 2, 'synapse').setOrigin(0.5, 0.5);
+        this.sid = new synapse(this, this.game.config.width / 2, this.game.config.height / 2, 'idleRight').setOrigin(0.5, 0.5);
         this.sid.setFriction(0.2, 0.2);
 
         // create End Flag and set game over state

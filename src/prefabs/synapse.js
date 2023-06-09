@@ -13,6 +13,7 @@ class synapse extends Phaser.Physics.Arcade.Sprite {
 
         // Set the maximum velocity of the sprite
         this.body.setMaxVelocity(200, 400); // Adjust the values as needed
+        this.setScale(.7);
 
         // Create cursor keys for input
         this.cursors = scene.input.keyboard.addKeys('W,A,D');
