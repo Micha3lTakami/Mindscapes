@@ -8,6 +8,7 @@ class platform extends Phaser.Physics.Arcade.Sprite {
     this.scene.physics.world.enable(this);
     this.setImmovable(true);
     this.body.allowGravity = false;
+    this.setScale(0.5);
 
     // Add collider between platform and main character
     this.scene.physics.add.collider(this, this.scene.sid);
