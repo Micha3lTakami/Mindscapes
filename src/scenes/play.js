@@ -202,6 +202,12 @@ class Play extends Phaser.Scene {
         }
 
         if (this.gameOver == true) {
+            // Create the death animation in the scene where sid is created
+
+            //this.sid.anims.play('death');
+            this.time.delayedCall(1100, () =>{
+                this.sid.destroy();
+            });
             this.gameOver = true;
             let change = this.add.text(this.cameras.main.centerX, this.cameras.main.centerY, 'Level Complete!', playConfig).setOrigin(0.5);
             let REST = this.add.text(this.cameras.main.centerX, this.cameras.main.centerY + 50, 'Press (SPACE) for next level or (M) for Menu', playConfig).setOrigin(0.5);

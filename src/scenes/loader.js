@@ -58,7 +58,14 @@ class Loader extends Phaser.Scene {
         // load spritesheet file path
         this.load.path = "./assets/spritesheets/"
         // load spritesheets 
-        this.load.spritesheet('protagonist', 'protagonist.png', {frameWidth: 16, frameHeight: 16, startFrame: 0, endFrame: 1});
+        //this.load.spritesheet('protagonist', 'protagonist.png', {frameWidth: 16, frameHeight: 16, startFrame: 0, endFrame: 1});
+        this.load.spritesheet('runLeft', 'main-run-left.png', {frameWidth: 32,frameHeight: 32,startFrame: 0, endFrame: 5});
+        this.load.spritesheet('runRight', 'main-run-right.png', {frameWidth: 32,frameHeight: 32,startFrame: 0, endFrame: 5});
+        this.load.spritesheet('jumpRight', 'main-jump-right.png', {frameWidth: 32,frameHeight: 32,startFrame: 0, endFrame: 7});
+        this.load.spritesheet('jumpLeft', 'main-jump-left.png', {frameWidth: 32,frameHeight: 32,startFrame: 0, endFrame: 7});
+        this.load.spritesheet('idleLeft', 'main-idle-left.png', {frameWidth: 32,frameHeight: 32,startFrame: 0, endFrame: 3});
+        this.load.spritesheet('idleRight', 'main-idle-right.png', {frameWidth: 32,frameHeight: 32,startFrame: 0, endFrame: 3});
+        this.load.spritesheet('death', 'main-death.png', {frameWidth: 32,frameHeight: 32,startFrame: 0, endFrame: 7});
         this.load.spritesheet('synapse', 'neuron.png', {frameWidth: 32, frameHeight: 32, startFrame: 0, endFrame: 4});
         this.load.spritesheet('anger', 'anger.png', {frameWidth: 32, frameHeight: 32, startFrame: 0, endFrame: 2});
         this.load.spritesheet('happy', 'happiness.png', {frameWidth: 32, frameHeight: 32, startFrame: 0, endFrame: 2});

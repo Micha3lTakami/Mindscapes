@@ -39,25 +39,54 @@ class synapse extends Phaser.Physics.Arcade.Sprite {
         // Create sound variables
         this.isWalkingLeft = false;
         this.isWalkingRight = false;
+        this.facingRight = false;
+        this.facingLeft = false;
+
 
         scene.anims.create({
             key: 'right',
-            frames: scene.anims.generateFrameNumbers(spritesheet, { start: 3, end: 3 }),
+            frames: scene.anims.generateFrameNumbers('runRight', { start: 0, end: 5 }),
             frameRate: 10,
             repeat: -1
         });
         scene.anims.create({
             key: 'left',
-            frames: scene.anims.generateFrameNumbers(spritesheet, { start: 4, end: 4 }),
+            frames: scene.anims.generateFrameNumbers('runLeft', { start: 0, end: 5 }),
             frameRate: 10,
             repeat: -1
         });
         scene.anims.create({
-            key: 'idle',
-            frames: scene.anims.generateFrameNumbers(spritesheet, { start: 0, end: 2 }),
+            key: 'idleRight',
+            frames: scene.anims.generateFrameNumbers('idleRight', { start: 0, end: 3 }),
             frameRate: 10,
             repeat: -1
         });
+        scene.anims.create({
+            key: 'idleLeft',
+            frames: scene.anims.generateFrameNumbers('idleLeft', { start: 0, end: 3 }),
+            frameRate: 10,
+            repeat: -1
+        });
+        scene.anims.create({
+            key: 'jumpLeft',
+            frames: scene.anims.generateFrameNumbers('jumpLeft', { start: 0, end: 7 }),
+            frameRate: 10,
+            repeat: -1
+        });
+        scene.anims.create({
+            key: 'jumpRight',
+            frames: scene.anims.generateFrameNumbers('jumpRight', { start: 0, end: 7 }),
+            frameRate: 10,
+            repeat: -1
+        });
+        this.anims.create({
+            key: 'death',
+            frames: scene.anims.generateFrameNumbers('death', { start: 0, end: 7 }),
+            frameRate: 10,
+            repeat: -1
+        });
+
+
     }
 
     update() {
@@ -81,7 +110,16 @@ class synapse extends Phaser.Physics.Arcade.Sprite {
                 this.isWalkingLeft = false;
             }
         } else {
-            this.anims.play('idle', true);
+            if(this.isWalkingRight){
+                this.anims.play('idleRight', true);
+                this.facingRight = true;
+                this.facingLeft = false;
+            }
+            if(this.isWalkingLeft){
+                this.anims.play('idleLeft', true);
+                this.facingLeft = true;
+                this.facingRight = false;
+            }
             this.walkLeftSound.stop();
             this.walkRightSound.stop();
             this.isWalkingLeft = false;
@@ -90,6 +128,14 @@ class synapse extends Phaser.Physics.Arcade.Sprite {
 
         // Check if the up key is pressed and the sprite can jump
         if (this.cursors.W.isDown && this.body.onFloor()) {
+            if(this.facingRight){
+                this.anims.stop();
+                this.anims.play('jumpRight');
+            }
+            if(this.facingLeft){
+                this.anims.stop();
+                this.anims.play('jumpLeft', true);
+            }
             this.body.setVelocityY(-200); // Adjust the value as needed
             this.jumpSound.play();
         }
