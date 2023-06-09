@@ -234,7 +234,7 @@ class Play extends Phaser.Scene {
         if (availablePlatforms > 0) {
           const worldX = pointer.worldX;
           const worldY = pointer.worldY;  
-          const newPlat = new JumpBlock(this, worldX, worldY, 'jumpBlock').setOrigin(0.5);
+          const newPlat = new platform(this, worldX, worldY, 'platform').setOrigin(0.5);
           //newPlat.setScale(0.75);
           availablePlatforms--;
           console.log('avail plats: ' + availablePlatforms)
