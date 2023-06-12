@@ -184,22 +184,6 @@ class Play extends Phaser.Scene {
             }   
         }
         this.blocksLeft.text = availablePlatforms;
-        
-        // if(this.map.properties.hurt == true) {
-        //     this.physics.pause();
-        //     this.sound.stopAll();
-        //     this.gameOver = true;
-        //     console.log('spike hit');
-        // }
-    
-        //detect collisions with spikes and protag
-        // this.physics.add.collider(this.sid, this.spikeLayer, () => {
-        //     this.physics.pause();
-        //     this.sound.stopAll();
-        //     this.gameOver = true;
-        //     console.log('spike hit');
-        // });
-        // detect collisions with protagonist and pause scene when collision occurs
 
         this.physics.add.collider(this.happy1, this.sid, () => {
             this.physics.pause();
