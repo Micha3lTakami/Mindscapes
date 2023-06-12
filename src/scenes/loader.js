@@ -37,9 +37,10 @@ class Loader extends Phaser.Scene {
         this.load.path  = './assets/sounds/'
         // load audio
         this.load.audio('levelMusic', 'brainMusic.mp3');
+        this.load.audio('levelMusic2', 'Cold-Moon_Looping.mp3');
         this.load.audio('menuMusic','menuMusic.mp3');
         this.load.audio('select','selecter.mp3');
-        this.load.audio('jump','slimeJump.mp3');
+        this.load.audio('jump','mixkit-player-jumping-in-a-video-game-2043.wav');
         this.load.audio('walkLeft','stepLeft.mp3');
         this.load.audio('walkRight','stepRight.mp3');
 
