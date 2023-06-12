@@ -18,7 +18,7 @@ class Play extends Phaser.Scene {
         gameMusic.play();
 
         // reset the availablePlatforms value
-        availablePlatforms = 10;
+        availablePlatforms = 3;
         
         
         //add map tilesprite
