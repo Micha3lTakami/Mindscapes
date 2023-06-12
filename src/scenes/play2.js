@@ -264,7 +264,7 @@ class Play2 extends Phaser.Scene {
                 change.destroy();
                 REST.destroy();
                 this.gameOver = false;
-                this.scene.start('playScene');
+                this.scene.start('playScene2');
             }
         }
         
