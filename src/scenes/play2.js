@@ -64,7 +64,7 @@ class Play2 extends Phaser.Scene {
 
         // Spawn vacuums
         const vacuumSpawn = map.findObject("vacuumBlocks", obj => obj.name === "vacuumBlock");
-        this.vacuumBlock = new GravityBlock(this, vacuumSpawn.x, vacuumSpawn.y, 'platform').setOrigin(0.5)
+        this.vacuumBlock = new GravityBlock(this, vacuumSpawn.x, vacuumSpawn.y, 'GravityBlock').setOrigin(0.5)
         
         //enable collision for map
         groundLayer.setCollisionByProperty({ collides: true })
@@ -257,7 +257,7 @@ class Play2 extends Phaser.Scene {
             });
             this.gameOver = true;
             let change = this.add.text(this.cameras.main.centerX, this.cameras.main.centerY, 'Level Complete!', playConfig).setOrigin(0.5);
-            let REST = this.add.text(this.cameras.main.centerX, this.cameras.main.centerY + 50, 'Press (SPACE) for next level or (M) for Menu', playConfig).setOrigin(0.5);
+            let REST = this.add.text(this.cameras.main.centerX, this.cameras.main.centerY + 50, 'Press (SPACE) to restart or (M) for Menu', playConfig).setOrigin(0.5);
             this.sid.setAlpha(0);
             // Set scroll factor to 0 to fix the position of the text so text doesn't move on camera scroll
             change.setScrollFactor(0);
