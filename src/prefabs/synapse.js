@@ -137,7 +137,7 @@ class synapse extends Phaser.Physics.Arcade.Sprite {
                 this.anims.stop();
                 this.anims.play('jumpLeft', true);
             }
-            this.body.setVelocityY(-200); // Adjust the value as needed
+            this.body.setVelocityY(-145); // Adjust the value as needed
             this.jumpSound.play();
         }
     }
