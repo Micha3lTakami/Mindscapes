@@ -30,10 +30,10 @@ class Play2 extends Phaser.Scene {
         const brain_set = map.addTilesetImage('basic-platformer-tileset', 'tilesetImage');
 
         //add layers for tile
-        const bgLayer = map.createLayer('Sky', brain_set2, 0, 0);
-        const groundLayer = map.createLayer('Ground', brain_set2, 0, 0);
-        const terrainLayer = map.createLayer('Decoration', brain_set2, 0, 0);
-        const spikeLayer = map.createLayer('Spike', brain_set2, 0, 0);
+        const bgLayer = map.createLayer('Sky', brain_set, 0, 0);
+        const groundLayer = map.createLayer('Ground', brain_set, 0, 0);
+        const terrainLayer = map.createLayer('Decoration', brain_set, 0, 0);
+        const spikeLayer = map.createLayer('Spike', brain_set, 0, 0);
 
 
         // Initialize timer
@@ -59,6 +59,10 @@ class Play2 extends Phaser.Scene {
         this.happy1 = new enemy(this, enemySpawn2.x, enemySpawn2.y, 'happy').setOrigin(0.5)
         this.sad1 = new enemy(this, enemySpawn1.x * .75, enemySpawn1.y, 'sad').setOrigin(0.5)
         //could fix animation later
+
+        // Spawn vacuums
+        const vacuumSpawn = map.findObject("vacuumBlocks", obj => obj.name === "vacuumBlock");
+        this.vacuumBlock = new GravityBlock(this, vacuumSpawn.x, vacuumSpawn.y, 'platform').setOrigin(0.5)
         
         //enable collision for map
         groundLayer.setCollisionByProperty({ collides: true })
