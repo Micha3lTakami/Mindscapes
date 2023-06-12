@@ -43,6 +43,10 @@ class GravityBlock extends Phaser.Physics.Arcade.Sprite {
     player.body.setAcceleration(force.x, force.y);
   }
 
+  removeGravity(player) {
+    player.body.setAcceleration(0, 0);
+  }
+
   onClick() {
     // Delete the block
     
