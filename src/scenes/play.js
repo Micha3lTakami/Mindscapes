@@ -60,8 +60,12 @@ class Play extends Phaser.Scene {
 
         //enable collision for spikes
         spikeLayer.setCollisionByProperty({ hurt: true }) 
-        this.physics.add.collider(this.sid, spikeLayer);
-       
+        //this.physics.add.collider(this.sid, spikeLayer);
+        this.physics.add.collider(this.sid, spikeLayer, null, function(){
+            dead = true;
+            console.log('spike hit');
+        });
+
         //add camera to follow protag if needed (or just make map scroll)
         this.cameras.main.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
         this.cameras.main.startFollow(this.sid, true, 0.25, 0.25);
@@ -140,7 +144,7 @@ class Play extends Phaser.Scene {
     // update()
     // menu update function
     update() {
- 
+    
         let playConfig = {
             fontFamily: 'Helvetica',
             fontSize: '24px',
@@ -228,7 +232,7 @@ class Play extends Phaser.Scene {
             this.gameOver = true;
             let change = this.add.text(this.cameras.main.centerX, this.cameras.main.centerY, 'Level Complete!', playConfig).setOrigin(0.5);
             let REST = this.add.text(this.cameras.main.centerX, this.cameras.main.centerY + 50, 'Press (SPACE) for next level or (M) for Menu', playConfig).setOrigin(0.5);
-            
+            this.sid.setAlpha(0);
             // Set scroll factor to 0 to fix the position of the text so text doesn't move on camera scroll
             change.setScrollFactor(0);
             REST.setScrollFactor(0);
@@ -245,6 +249,13 @@ class Play extends Phaser.Scene {
                 this.gameOver = false;
                 this.scene.start('playScene2');
             }
+        }
+        
+        if (dead == true) {
+            //this.physics.pause();
+            this.sound.stopAll();
+            this.gameOver = true;
+            //return;
         }
     }
     placePlatform(pointer) {

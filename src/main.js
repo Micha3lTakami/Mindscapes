@@ -49,4 +49,5 @@ let w = game.config.width;
 let h = game.config.height;
 let availablePlatforms = 10;
 let blocksLeft
+let dead = false;
 
