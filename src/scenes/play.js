@@ -12,7 +12,7 @@ class Play extends Phaser.Scene {
         // *******************************
         
         this.cameras.main.fadeIn(1000);
-        
+
         // Game Music and Settings
         let gameMusic = this.sound.add('levelMusic', { loop: true });
         gameMusic.setVolume(0.5);
@@ -185,21 +185,6 @@ class Play extends Phaser.Scene {
         }
         this.blocksLeft.text = availablePlatforms;
         
-        // if(this.map.properties.hurt == true) {
-        //     this.physics.pause();
-        //     this.sound.stopAll();
-        //     this.gameOver = true;
-        //     console.log('spike hit');
-        // }
-    
-        //detect collisions with spikes and protag
-        // this.physics.add.collider(this.sid, this.spikeLayer, () => {
-        //     this.physics.pause();
-        //     this.sound.stopAll();
-        //     this.gameOver = true;
-        //     console.log('spike hit');
-        // });
-        // detect collisions with protagonist and pause scene when collision occurs
 
         this.physics.add.collider(this.happy1, this.sid, () => {
             this.physics.pause();
@@ -223,6 +208,7 @@ class Play extends Phaser.Scene {
         });
 
         this.physics.add.collider(this.sid, this.flag, () => {
+            this.sound.stopAll();
             this.scene.start('playScene2');
         });
 
