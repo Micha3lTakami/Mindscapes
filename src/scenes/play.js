@@ -57,7 +57,11 @@ class Play extends Phaser.Scene {
         this.physics.add.collider(this.happy1, groundLayer)
         this.physics.add.collider(this.sad1, groundLayer)
         this.physics.add.collider(this.flag, groundLayer)
-        
+
+        //enable collision for spikes
+        spikeLayer.setCollisionByProperty({ hurt: true }) 
+        this.physics.add.collider(this.sid, spikeLayer);
+       
         //add camera to follow protag if needed (or just make map scroll)
         this.cameras.main.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
         this.cameras.main.startFollow(this.sid, true, 0.25, 0.25);
@@ -133,8 +137,6 @@ class Play extends Phaser.Scene {
   
     }
     
-
-
     // update()
     // menu update function
     update() {
@@ -170,8 +172,23 @@ class Play extends Phaser.Scene {
             }   
         }
         this.blocksLeft.text = availablePlatforms;
-
+        
+        // if(this.map.properties.hurt == true) {
+        //     this.physics.pause();
+        //     this.sound.stopAll();
+        //     this.gameOver = true;
+        //     console.log('spike hit');
+        // }
+    
+        //detect collisions with spikes and protag
+        // this.physics.add.collider(this.sid, this.spikeLayer, () => {
+        //     this.physics.pause();
+        //     this.sound.stopAll();
+        //     this.gameOver = true;
+        //     console.log('spike hit');
+        // });
         // detect collisions with protagonist and pause scene when collision occurs
+
         this.physics.add.collider(this.happy1, this.sid, () => {
             this.physics.pause();
             this.sound.stopAll();
@@ -241,3 +258,5 @@ class Play extends Phaser.Scene {
         }
       }
 }
+
+

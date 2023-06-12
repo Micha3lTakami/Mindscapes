@@ -26,7 +26,7 @@ class synapse extends Phaser.Physics.Arcade.Sprite {
         this.body.setDrag(500, 0); // Adjust the values as needed
 
         // Adjust hitbox size
-        this.body.setSize(12, 30, true);
+        this.body.setSize(12, 29, true);
 
         // Load sounds
         this.walkLeftSound = scene.sound.add('walkLeft', {loop: true});
