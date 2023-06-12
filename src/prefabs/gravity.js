@@ -15,7 +15,7 @@ class GravityBlock extends Phaser.Physics.Arcade.Sprite {
     this.scene.physics.add.collider(this, this.scene.sid);
 
     // Set up the properties of the gravity well
-    this.radius = 200;
+    this.radius = 30;
     this.gravityForce = 5000;
 
     // Create a circle sensor to detect the main character

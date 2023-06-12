@@ -7,6 +7,7 @@ class JumpBlock extends Phaser.Physics.Arcade.Sprite {
       this.scene.add.existing(this);
       this.scene.physics.world.enable(this);
       this.setImmovable(true);
+      this.setScale(0.5);
   
       // Add collider between JumpBlock and main character
       this.scene.physics.add.collider(this, this.scene.sid, this.onCollision, null, this);
@@ -22,7 +23,7 @@ class JumpBlock extends Phaser.Physics.Arcade.Sprite {
         
     }
     onCollision(jumpBlock, mainCharacter) {
-        mainCharacter.body.velocity.y = -600;
+        mainCharacter.body.velocity.y = -200;
     }
   
     onClick() {
