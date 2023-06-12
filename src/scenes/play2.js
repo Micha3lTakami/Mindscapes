@@ -93,9 +93,9 @@ class Play2 extends Phaser.Scene {
         
         // Display timer Configuration
         this.timerConfig = {
-            fontFamily: 'Courier',
+            fontFamily: 'Helvetica',
             fontSize: '28px',
-            backgroundColor: '#000000',
+            backgroundColor: '#181425',
             color: '#e4a672',
             align: 'right',
             padding: {
@@ -113,9 +113,9 @@ class Play2 extends Phaser.Scene {
 
         // Display blocks left configuration
         this.blocksConfig = {
-            fontFamily: 'Courier',
+            fontFamily: 'Helvetica',
             fontSize: '28px',
-            backgroundColor: '#000000',
+            backgroundColor: '#181425',
             color: '#e4a672',
             align: 'right',
             padding: {
@@ -201,21 +201,6 @@ class Play2 extends Phaser.Scene {
         }
         this.blocksLeft.text = availablePlatforms;
         
-        // if(this.map.properties.hurt == true) {
-        //     this.physics.pause();
-        //     this.sound.stopAll();
-        //     this.gameOver = true;
-        //     console.log('spike hit');
-        // }
-    
-        //detect collisions with spikes and protag
-        // this.physics.add.collider(this.sid, this.spikeLayer, () => {
-        //     this.physics.pause();
-        //     this.sound.stopAll();
-        //     this.gameOver = true;
-        //     console.log('spike hit');
-        // });
-        // detect collisions with protagonist and pause scene when collision occurs
 
         this.physics.add.collider(this.happy1, this.sid, () => {
             this.physics.pause();
@@ -257,7 +242,7 @@ class Play2 extends Phaser.Scene {
                 this.sid.destroy();
             });
             this.gameOver = true;
-            let change = this.add.text(this.cameras.main.centerX, this.cameras.main.centerY, 'Level Complete!', playConfig).setOrigin(0.5);
+            let change = this.add.text(this.cameras.main.centerX, this.cameras.main.centerY, 'Try Again(don\'t give up!)', playConfig).setOrigin(0.5);
             let REST = this.add.text(this.cameras.main.centerX, this.cameras.main.centerY + 50, 'Press (SPACE) to restart or (M) for Menu', playConfig).setOrigin(0.5);
             this.sid.setAlpha(0);
             // Set scroll factor to 0 to fix the position of the text so text doesn't move on camera scroll
