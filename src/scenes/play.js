@@ -15,7 +15,7 @@ class Play extends Phaser.Scene {
         let gameMusic = this.sound.add('levelMusic', { loop: true });
         gameMusic.setVolume(0.5);
         gameMusic.setRate(0.6);
-        //gameMusic.play();
+        gameMusic.play();
 
         // reset the availablePlatforms value
         availablePlatforms = 10;

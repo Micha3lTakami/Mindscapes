@@ -2,7 +2,10 @@ class Play2 extends Phaser.Scene {
     constructor() {
         super("playScene2");
     }
-
+    preload(){
+        this.load.image('tilesetImage2', './assets/images/basic-platformer-tileset2.png');
+        
+    }
     // create()
     // create play scene
     create() {
@@ -13,13 +16,13 @@ class Play2 extends Phaser.Scene {
         // *******************************
      
         // Game Music and Settings
-        let gameMusic = this.sound.add('levelMusic', { loop: true });
+        let gameMusic = this.sound.add('levelMusic2', { loop: true });
         gameMusic.setVolume(0.5);
         gameMusic.setRate(0.6);
-        //gameMusic.play();
+        gameMusic.play();
 
         // reset the availablePlatforms value
-        availablePlatforms = 10;
+        availablePlatforms = 3;
         
         
         //add map tilesprite
@@ -34,24 +37,32 @@ class Play2 extends Phaser.Scene {
 
 
         // Initialize timer
-        this.counter = game.settings.gameTimer / 1000;
+        this.counter = game.settings.gameTimer / 500;
         this.startTime = this.time.now; // Resets every 1000 milliseconds
 
         //platform event listener
         this.input.on('pointerdown', this.placePlatform, this);
         
         // create protagonist object
-        this.sid = new synapse(this, this.game.config.width / 24, this.game.config.height / 1.4, 'idleRight').setOrigin(0.5, 0.5);
+        const p1Spawn = map.findObject("playerSpawn", obj => obj.name === "playerSpawn");
+        this.sid = new synapse(this, p1Spawn.x,  p1Spawn.y, 'idleRight').setOrigin(0.5, 0.5);
         this.sid.setFriction(0.2, 0.2);
 
         // create End Flag and set game over state
-        this.flag = new endflag(this, this.game.config.width*.6, this.game.config.height/2, 'brainFlag');
+        const p1EndFlag = map.findObject("playerEnd", obj => obj.name === "playerEnd");
+        this.flag = new endflag(this, p1EndFlag.x, p1EndFlag.y, 'brainFlag');
         this.gameOver = false;
         
         // create enemies
-        this.happy1 = new enemy(this, game.config.width/3, game.config.height/2, 'happy').setOrigin(0.5)
-        this.sad1 = new enemy(this, game.config.width * .75, game.config.height/2, 'sad').setOrigin(0.5)
+        const enemySpawn1 = map.findObject("enemySpawn", obj => obj.name === "enemySpawn_Sad");
+        const enemySpawn2 = map.findObject("enemySpawn", obj => obj.name === "enemySpawn_Happy");
+        this.happy1 = new enemy(this, enemySpawn2.x, enemySpawn2.y, 'happy').setOrigin(0.5)
+        this.sad1 = new enemy(this, enemySpawn1.x * .75, enemySpawn1.y, 'sad').setOrigin(0.5)
         //could fix animation later
+
+        // Spawn vacuums
+        const vacuumSpawn = map.findObject("vacuumBlocks", obj => obj.name === "vacuumBlock");
+        this.vacuumBlock = new GravityBlock(this, vacuumSpawn.x, vacuumSpawn.y, 'platform').setOrigin(0.5)
         
         //enable collision for map
         groundLayer.setCollisionByProperty({ collides: true })
@@ -141,6 +152,12 @@ class Play2 extends Phaser.Scene {
             frameRate: 10,
             repeat: -1
             });
+            this.anims.create({
+                key: 'Placed2',
+                frames: this.anims.generateFrameNumbers('GravityBlock', { start: 0, end: 9 }),
+                frameRate: 10,
+                repeat: -1
+                });
   
     }
     
@@ -270,7 +287,7 @@ class Play2 extends Phaser.Scene {
         if (availablePlatforms > 0) {
           const worldX = pointer.worldX;
           const worldY = pointer.worldY;  
-          const newPlat = new platform(this, worldX, worldY, 'platform').setOrigin(0.5);
+          const newPlat = new JumpBlock(this, worldX, worldY, 'jumpBlock').setOrigin(0.5);
           //newPlat.setScale(0.75);
           availablePlatforms--;
           console.log('avail plats: ' + availablePlatforms)
