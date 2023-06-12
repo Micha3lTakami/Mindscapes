@@ -1,4 +1,4 @@
-class enemy extends Phaser.Physics.Arcade.Sprite {
+class enemy2 extends Phaser.Physics.Arcade.Sprite {
     constructor(scene, x, y, spritesheet) {
         super(scene, x, y, spritesheet);
         //this.setTint(Phaser.Display.Color.RandomRGB().color);
@@ -16,7 +16,7 @@ class enemy extends Phaser.Physics.Arcade.Sprite {
         // set up 'attack' animation
         this.anims.create({
             key: 'attack',
-            frames: this.anims.generateFrameNumbers(spritesheet, { start: 0, end: 2 }),
+            frames: this.anims.generateFrameNumbers(spritesheet, { start: 0, end: 8 }),
             frameRate: 10,
             repeat: -1
         });
