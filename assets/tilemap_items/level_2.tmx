@@ -986,13 +986,13 @@
   </object>
  </objectgroup>
  <objectgroup id="6" name="enemySpawn">
-  <object id="3" name="enemySpawn" x="210.371" y="1266.45">
+  <object id="3" name="enemySpawn_Sad" x="210.371" y="1266.45">
    <point/>
   </object>
-  <object id="4" name="enemySpawn" x="89.3282" y="1656.54">
+  <object id="4" name="enemySpawn_Happy" x="89.3282" y="1656.54">
    <point/>
   </object>
-  <object id="5" name="enemySpawn" x="106.771" y="1762.25">
+  <object id="5" name="enemySpawn_Sad" x="106.771" y="1762.25">
    <point/>
   </object>
  </objectgroup>
