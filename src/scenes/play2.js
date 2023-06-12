@@ -225,7 +225,7 @@ class Play2 extends Phaser.Scene {
 
         this.physics.add.collider(this.sid, this.flag, () => {
             this.sound.stopAll();
-            let endText = this.add.text(this.cameras.main.centerX, this.cameras.main.centerY + 50, "That's progress, great job friend :)", playConfig).setOrigin(0.5);
+            let endText = this.add.text(this.cameras.main.centerX, this.cameras.main.centerY, "That's progress, great job friend :)", playConfig).setOrigin(0.5);
             endText.setScrollFactor(0);
             this.time.delayedCall(3000, () =>{
                 this.scene.start('menuScene');
@@ -264,7 +264,7 @@ class Play2 extends Phaser.Scene {
                 change.destroy();
                 REST.destroy();
                 this.gameOver = false;
-                this.scene.start('playScene2');
+                this.scene.start('playScene');
             }
         }
         
