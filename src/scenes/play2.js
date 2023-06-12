@@ -14,7 +14,9 @@ class Play2 extends Phaser.Scene {
         // *******************************
         // CREATE OBJECTS 
         // *******************************
-     
+        
+        this.cameras.main.fadeIn(1000);
+        
         // Game Music and Settings
         let gameMusic = this.sound.add('levelMusic2', { loop: true });
         gameMusic.setVolume(0.5);
