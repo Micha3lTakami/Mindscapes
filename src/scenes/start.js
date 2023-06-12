@@ -5,38 +5,37 @@ class Start extends Phaser.Scene{
     // create()
     // create start scene
     create() {
-        // NEEDS COLOR CHANGE: updates CSS styling for start scene
         let canvas = document.querySelector('canvas');
         canvas.style.border = '10px #f58b57 inset';  
         this.cameras.main.fadeIn(1000);
 
         // start scene text configuration
-        let startConfig = {
-            fontFamily: 'Helvetica',
-            fontWeight: 'bold',
-            stroke: '#e4a672',
-            fontSize: '12px',
-            color: '#e4a672',
-            //stroke: '#000',
-            //strokeThickness: 4,
-            allign: 'right',
-            padding: {
-                top: 5,
-                bottom: 5,
-            },
-            fixedWidth: 0
-        }
+        // let startConfig = {
+        //     fontFamily: 'Helvetica',
+        //     fontWeight: 'bold',
+        //     stroke: '#e4a672',
+        //     fontSize: '12px',
+        //     color: '#e4a672',
+        //     //stroke: '#000',
+        //     //strokeThickness: 4,
+        //     allign: 'right',
+        //     padding: {
+        //         top: 5,
+        //         bottom: 5,
+        //     },
+        //     fixedWidth: 0
+        // }
         // display start screen text and set default background
-        this.cameras.main.setBackgroundColor('E52424');
-        this.add.text(game.config.width/2, game.config.height/2, 'Press (ENTER) to continue', startConfig).setOrigin(0.5);
-        this.add.text(game.config.width/2, game.config.height*.75, 'Game Created by ', startConfig).setOrigin(0.5);
-        let names = this.add.text(game.config.width/2, game.config.height*.85, 'Michael Takami, Alejanda Sicaros, Jacob Penlan, and Jessica Zogaric', startConfig).setOrigin(0.5);
+        this.cameras.main.setBackgroundColor('3e2731');
+        // this.add.text(game.config.width/2, game.config.height/2, 'Press (ENTER) to continue', startConfig).setOrigin(0.5);
+        // this.add.text(game.config.width/2, game.config.height*.75, 'Game Created by ', startConfig).setOrigin(0.5);
+        // let names = this.add.text(game.config.width/2, game.config.height*.85, 'Michael Takami, Alejanda Sicaros, Jacob Penlan, and Jessica Zogaric', startConfig).setOrigin(0.5);
         //names.setScale(0.75)
-        
+        this.add.image(152, 175, 'enter').setOrigin(0, 0);
+        this.add.image(111, 248, 'credits').setOrigin(0, 0);
 
         // define keys
         keyENTER = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ENTER);
-      
     }
 
     // update()

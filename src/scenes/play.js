@@ -85,17 +85,17 @@ class Play extends Phaser.Scene {
         
         // Display timer Configuration
         this.timerConfig = {
-            fontFamily: 'Courier',
+            fontFamily: 'Helvetica',
             fontSize: '28px',
-            backgroundColor: '#000000',
+            backgroundColor: '#181425',
             color: '#e4a672',
-            align: 'right',
+            align: 'center',
             padding: {
                 top: 5,
                 bottom: 5,
             },
-            fixedWidth: 100 
-        }
+            fixedWidth: 100
+        };
                
         // Timer UI
         this.timeLeft = this.add.text(130, borderUISize + borderPadding - 30, this.counter, this.timerConfig);
@@ -105,17 +105,17 @@ class Play extends Phaser.Scene {
 
         // Display blocks left configuration
         this.blocksConfig = {
-            fontFamily: 'Courier',
+            fontFamily: 'Helvetica',
             fontSize: '28px',
-            backgroundColor: '#000000',
+            backgroundColor: '#181425',
             color: '#e4a672',
-            align: 'right',
+            align: 'center',
             padding: {
                 top: 5,
                 bottom: 5,
             },
             fixedWidth: 100 
-        }
+        };
         
         // Blocks remaining UI
         this.blocksLeft = this.add.text(260, borderUISize + borderPadding - 30, availablePlatforms, this.blocksConfig);
@@ -240,7 +240,7 @@ class Play extends Phaser.Scene {
                 this.sid.destroy();
             });
             this.gameOver = true;
-            let change = this.add.text(this.cameras.main.centerX, this.cameras.main.centerY, 'Level Complete!', playConfig).setOrigin(0.5);
+            let change = this.add.text(this.cameras.main.centerX, this.cameras.main.centerY, 'Try Again(don\'t give up!)', playConfig).setOrigin(0.5);
             let REST = this.add.text(this.cameras.main.centerX, this.cameras.main.centerY + 50, 'Press (SPACE) to restart or (M) for Menu', playConfig).setOrigin(0.5);
             this.sid.setAlpha(0);
             // Set scroll factor to 0 to fix the position of the text so text doesn't move on camera scroll

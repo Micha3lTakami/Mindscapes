@@ -52,6 +52,8 @@ class Loader extends Phaser.Scene {
         this.load.image('title_screen', 'title_screen.png');
         this.load.image('platform', 'block.png' );
         this.load.image('X', 'xEmoji.png');
+        this.load.image('credits', 'credits.png');
+        this.load.image('enter', 'enter_text.png');
 
         //load fonts
         this.load.script('webfont', 'https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js');
@@ -77,6 +79,8 @@ class Loader extends Phaser.Scene {
         this.load.spritesheet('jumpBlock', 'jumpBlock.png', {frameWidth: 32, frameHeight:32, startFrame:0, endFrame: 5 })
         this.load.spritesheet('GravityBlock', 'GravityBlock.png', {frameWidth: 32, frameHeight:32, startFrame:0, endFrame: 5 })
         this.load.spritesheet('anxiety', 'anxiety.png', {frameWidth: 32, frameHeight:32, startFrame:0, endFrame: 8 })
+        this.load.spritesheet('depression', 'depression-new.png', {frameWidth: 32, frameHeight:32, startFrame:0, endFrame: 11 })
+        
         
         
         // change scene upon completion
