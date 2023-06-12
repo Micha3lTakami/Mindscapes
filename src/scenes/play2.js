@@ -152,6 +152,12 @@ class Play2 extends Phaser.Scene {
             frameRate: 10,
             repeat: -1
             });
+            this.anims.create({
+                key: 'Placed2',
+                frames: this.anims.generateFrameNumbers('GravityBlock', { start: 0, end: 9 }),
+                frameRate: 10,
+                repeat: -1
+                });
   
     }
     
