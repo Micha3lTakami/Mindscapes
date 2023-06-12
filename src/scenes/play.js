@@ -61,6 +61,7 @@ class Play extends Phaser.Scene {
         //enable collision for spikes
         spikeLayer.setCollisionByProperty({ hurt: true }) 
         //this.physics.add.collider(this.sid, spikeLayer);
+        dead = false;
         this.physics.add.collider(this.sid, spikeLayer, null, function(){
             dead = true;
             console.log('spike hit');
@@ -196,6 +197,7 @@ class Play extends Phaser.Scene {
         this.physics.add.collider(this.happy1, this.sid, () => {
             this.physics.pause();
             this.sound.stopAll();
+            this.sid.moveable = false;
             //this.sound.play('deathNoise');
             //this.sid.destroy();
             
@@ -206,6 +208,7 @@ class Play extends Phaser.Scene {
         this.physics.add.collider(this.sad1, this.sid, () => {
             this.physics.pause();
             this.sound.stopAll();
+            this.sid.moveable = false;
             //this.sound.play('deathNoise');
             //this.sid.destroy();
             
@@ -255,6 +258,7 @@ class Play extends Phaser.Scene {
             //this.physics.pause();
             this.sound.stopAll();
             this.gameOver = true;
+            this.sid.moveable = false;
             //return;
         }
     }

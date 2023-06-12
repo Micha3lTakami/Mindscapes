@@ -42,6 +42,7 @@ class synapse extends Phaser.Physics.Arcade.Sprite {
         this.isWalkingRight = false;
         this.facingRight = false;
         this.facingLeft = false;
+        this.moveable = true;
 
 
         scene.anims.create({
@@ -91,54 +92,56 @@ class synapse extends Phaser.Physics.Arcade.Sprite {
     }
 
     update() {
-        // Check for keyboard input
-        if (this.cursors.A.isDown) {
-            this.body.setVelocityX(-100);
-            this.anims.play('left', true);
-            if (!this.isWalkingLeft) {
-                this.walkLeftSound.play();
+        if(this.moveable == true){
+            // Check for keyboard input
+            if (this.cursors.A.isDown) {
+                this.body.setVelocityX(-100);
+                this.anims.play('left', true);
+                if (!this.isWalkingLeft) {
+                    this.walkLeftSound.play();
+                    this.walkRightSound.stop();
+                    this.isWalkingLeft = true;
+                    this.isWalkingRight = false;
+                }
+            } else if (this.cursors.D.isDown) {
+                this.body.setVelocityX(100);
+                this.anims.play('right', true);
+                if (!this.isWalkingRight) {
+                    this.walkRightSound.play();
+                    this.walkLeftSound.stop();
+                    this.isWalkingRight = true;
+                    this.isWalkingLeft = false;
+                }
+            } else {
+                if(this.isWalkingRight){
+                    this.anims.play('idleRight', true);
+                    this.facingRight = true;
+                    this.facingLeft = false;
+                }
+                if(this.isWalkingLeft){
+                    this.anims.play('idleLeft', true);
+                    this.facingLeft = true;
+                    this.facingRight = false;
+                }
+                this.walkLeftSound.stop();
                 this.walkRightSound.stop();
-                this.isWalkingLeft = true;
+                this.isWalkingLeft = false;
                 this.isWalkingRight = false;
             }
-        } else if (this.cursors.D.isDown) {
-            this.body.setVelocityX(100);
-            this.anims.play('right', true);
-            if (!this.isWalkingRight) {
-                this.walkRightSound.play();
-                this.walkLeftSound.stop();
-                this.isWalkingRight = true;
-                this.isWalkingLeft = false;
-            }
-        } else {
-            if(this.isWalkingRight){
-                this.anims.play('idleRight', true);
-                this.facingRight = true;
-                this.facingLeft = false;
-            }
-            if(this.isWalkingLeft){
-                this.anims.play('idleLeft', true);
-                this.facingLeft = true;
-                this.facingRight = false;
-            }
-            this.walkLeftSound.stop();
-            this.walkRightSound.stop();
-            this.isWalkingLeft = false;
-            this.isWalkingRight = false;
-        }
 
-        // Check if the up key is pressed and the sprite can jump
-        if (this.cursors.W.isDown && this.body.onFloor()) {
-            if(this.facingRight){
-                this.anims.stop();
-                this.anims.play('jumpRight');
+            // Check if the up key is pressed and the sprite can jump
+            if (this.cursors.W.isDown && this.body.onFloor()) {
+                if(this.facingRight){
+                    this.anims.stop();
+                    this.anims.play('jumpRight');
+                }
+                if(this.facingLeft){
+                    this.anims.stop();
+                    this.anims.play('jumpLeft', true);
+                }
+                this.body.setVelocityY(-145); // Adjust the value as needed
+                this.jumpSound.play();
             }
-            if(this.facingLeft){
-                this.anims.stop();
-                this.anims.play('jumpLeft', true);
-            }
-            this.body.setVelocityY(-145); // Adjust the value as needed
-            this.jumpSound.play();
         }
     }
 }
