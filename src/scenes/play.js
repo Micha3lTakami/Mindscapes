@@ -10,7 +10,9 @@ class Play extends Phaser.Scene {
         // *******************************
         // CREATE OBJECTS 
         // *******************************
-     
+        
+        this.cameras.main.fadeIn(1000);
+        
         // Game Music and Settings
         let gameMusic = this.sound.add('levelMusic', { loop: true });
         gameMusic.setVolume(0.5);
@@ -18,7 +20,7 @@ class Play extends Phaser.Scene {
         gameMusic.play();
 
         // reset the availablePlatforms value
-        availablePlatforms = 10;
+        availablePlatforms = 3;
         
         
         //add map tilesprite
@@ -239,7 +241,7 @@ class Play extends Phaser.Scene {
             });
             this.gameOver = true;
             let change = this.add.text(this.cameras.main.centerX, this.cameras.main.centerY, 'Level Complete!', playConfig).setOrigin(0.5);
-            let REST = this.add.text(this.cameras.main.centerX, this.cameras.main.centerY + 50, 'Press (SPACE) for next level or (M) for Menu', playConfig).setOrigin(0.5);
+            let REST = this.add.text(this.cameras.main.centerX, this.cameras.main.centerY + 50, 'Press (SPACE) to restart or (M) for Menu', playConfig).setOrigin(0.5);
             this.sid.setAlpha(0);
             // Set scroll factor to 0 to fix the position of the text so text doesn't move on camera scroll
             change.setScrollFactor(0);
@@ -255,7 +257,7 @@ class Play extends Phaser.Scene {
                 change.destroy();
                 REST.destroy();
                 this.gameOver = false;
-                this.scene.start('playScene2');
+                this.scene.start('playScene');
             }
         }
         

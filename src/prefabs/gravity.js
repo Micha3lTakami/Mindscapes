@@ -9,11 +9,9 @@ class GravityBlock extends Phaser.Physics.Arcade.Sprite {
     this.body.setAllowGravity(false);
     this.setScale(0.5);
     this.setImmovable(true);
-    this.scene.physics.world.enable(this);
-    
 
     this.scene.physics.add.collider(this, this.scene.sid);
-
+    
     // Set up the properties of the gravity well
     this.radius = 30;
     this.gravityForce = 5000;
@@ -34,20 +32,30 @@ class GravityBlock extends Phaser.Physics.Arcade.Sprite {
   }
 
   applyGravity(sensor, player) {
-    // Calculate the direction and magnitude of the gravitational force
-    const direction = new Phaser.Math.Vector2(sensor.x - player.x, sensor.y - player.y).normalize();
-    const magnitude = Phaser.Math.Distance.Between(sensor.x, sensor.y, player.x, player.y);
+    // Calculate the distance between the sensor and the player
+    const distance = Phaser.Math.Distance.Between(sensor.x, sensor.y, player.x, player.y);
 
-    // Apply the gravitational force to the player
-    const force = direction.scale(this.gravityForce / magnitude);
-    player.body.setAcceleration(force.x, force.y);
+    if (distance <= this.radius) {
+      // Calculate the direction and magnitude of the gravitational force
+      const direction = new Phaser.Math.Vector2(sensor.x - player.x, sensor.y - player.y).normalize();
+      const magnitude = Phaser.Math.Distance.Between(sensor.x, sensor.y, player.x, player.y);
+
+      // Apply the gravitational force to the player
+      const force = direction.scale(this.gravityForce / magnitude);
+      player.body.setAcceleration(force.x, force.y);
+    } 
+    else {
+      this.removeGravity(player);
+    }
+  }
+
+  removeGravity(player) {
+    player.body.setAcceleration(0, 0);
   }
 
   onClick() {
     // Delete the block
-    
     this.scene.physics.world.disable(this.sensor);
-    //this.sensor.destory();
     this.destroy();
 
     // Increment the availablePlatforms global variable by 1
