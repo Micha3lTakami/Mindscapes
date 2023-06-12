@@ -16,7 +16,7 @@ class Play2 extends Phaser.Scene {
         // *******************************
         
         this.cameras.main.fadeIn(1000);
-        
+
         // Game Music and Settings
         let gameMusic = this.sound.add('levelMusic2', { loop: true });
         gameMusic.setVolume(0.5);
@@ -239,6 +239,7 @@ class Play2 extends Phaser.Scene {
         });
 
         this.physics.add.collider(this.sid, this.flag, () => {
+            this.sound.stopAll();
             this.scene.start('playScene2');
         });
 

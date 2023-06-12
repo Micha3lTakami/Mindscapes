@@ -76,6 +76,7 @@ class Loader extends Phaser.Scene {
         this.load.spritesheet('brainFlag', 'brainFlag.png', {frameWidth: 32, frameHeight: 50, startFrame: 0, endFrame: 4});
         this.load.spritesheet('jumpBlock', 'jumpBlock.png', {frameWidth: 32, frameHeight:32, startFrame:0, endFrame: 5 })
         this.load.spritesheet('GravityBlock', 'GravityBlock.png', {frameWidth: 32, frameHeight:32, startFrame:0, endFrame: 5 })
+        this.load.spritesheet('anxiety', 'anxiety.png', {frameWidth: 32, frameHeight:32, startFrame:0, endFrame: 8 })
         
         
         // change scene upon completion
