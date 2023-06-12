@@ -11,6 +11,7 @@ class endflag extends Phaser.Physics.Arcade.Sprite {
         this.setCollideWorldBounds(true);
         this.body.setImmovable(true); // The endFlag should not be moved by collisions
 
+        
         this.body.onWorldBounds = true;
 
         this.body.setAllowGravity(true);
