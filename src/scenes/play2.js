@@ -27,7 +27,7 @@ class Play2 extends Phaser.Scene {
         
         //add map tilesprite
         const map = this.add.tilemap('tilemapJSON2');
-        const brain_set2 = map.addTilesetImage('brain_set2', 'tilesetImage2');
+        const brain_set = map.addTilesetImage('basic-platformer-tileset', 'tilesetImage');
 
         //add layers for tile
         const bgLayer = map.createLayer('Sky', brain_set2, 0, 0);
@@ -37,23 +37,27 @@ class Play2 extends Phaser.Scene {
 
 
         // Initialize timer
-        this.counter = game.settings.gameTimer / 1000;
+        this.counter = game.settings.gameTimer / 500;
         this.startTime = this.time.now; // Resets every 1000 milliseconds
 
         //platform event listener
         this.input.on('pointerdown', this.placePlatform, this);
         
         // create protagonist object
-        this.sid = new synapse(this, this.game.config.width / 24, this.game.config.height / 1.4, 'idleRight').setOrigin(0.5, 0.5);
+        const p1Spawn = map.findObject("playerSpawn", obj => obj.name === "playerSpawn");
+        this.sid = new synapse(this, p1Spawn.x,  p1Spawn.y, 'idleRight').setOrigin(0.5, 0.5);
         this.sid.setFriction(0.2, 0.2);
 
         // create End Flag and set game over state
-        this.flag = new endflag(this, this.game.config.width*.6, this.game.config.height/2, 'brainFlag');
+        const p1EndFlag = map.findObject("playerEnd", obj => obj.name === "playerEnd");
+        this.flag = new endflag(this, p1EndFlag.x, p1EndFlag.y, 'brainFlag');
         this.gameOver = false;
         
         // create enemies
-        this.happy1 = new enemy(this, game.config.width/3, game.config.height/2, 'happy').setOrigin(0.5)
-        this.sad1 = new enemy(this, game.config.width * .75, game.config.height/2, 'sad').setOrigin(0.5)
+        const enemySpawn1 = map.findObject("enemySpawn", obj => obj.name === "enemySpawn_Sad");
+        const enemySpawn2 = map.findObject("enemySpawn", obj => obj.name === "enemySpawn_Happy");
+        this.happy1 = new enemy(this, enemySpawn2.x, enemySpawn2.y, 'happy').setOrigin(0.5)
+        this.sad1 = new enemy(this, enemySpawn1.x * .75, enemySpawn1.y, 'sad').setOrigin(0.5)
         //could fix animation later
         
         //enable collision for map
