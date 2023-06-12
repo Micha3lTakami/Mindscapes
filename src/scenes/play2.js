@@ -41,11 +41,13 @@ class Play2 extends Phaser.Scene {
         this.input.on('pointerdown', this.placePlatform, this);
         
         // create protagonist object
-        this.sid = new synapse(this, this.game.config.width / 24, this.game.config.height / 1.4, 'idleRight').setOrigin(0.5, 0.5);
+        const p1Spawn = map.findObject("playerSpawn", obj => obj.name === "playerSpawn");
+        this.sid = new synapse(this, p1Spawn.x,  p1Spawn.y, 'idleRight').setOrigin(0.5, 0.5);
         this.sid.setFriction(0.2, 0.2);
 
         // create End Flag and set game over state
-        this.flag = new endflag(this, this.game.config.width*.6, this.game.config.height/2, 'brainFlag');
+        const p1EndFlag = map.findObject("playerEnd", obj => obj.name === "playerEnd");
+        this.flag = new endflag(this, p1EndFlag.x, p1EndFlag.y, 'brainFlag');
         this.gameOver = false;
         
         // create enemies
