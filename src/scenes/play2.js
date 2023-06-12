@@ -24,7 +24,7 @@ class Play2 extends Phaser.Scene {
         
         //add map tilesprite
         const map = this.add.tilemap('tilemapJSON2');
-        const brain_set = map.addTilesetImage('brain_set', 'tilesetImage');
+        const brain_set = map.addTilesetImage('basic-platformer-tileset', 'tilesetImage');
 
         //add layers for tile
         const bgLayer = map.createLayer('Sky', brain_set, 0, 0);
