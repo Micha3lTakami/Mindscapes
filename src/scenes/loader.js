@@ -30,6 +30,8 @@ class Loader extends Phaser.Scene {
         
         //add tile info
         this.load.tilemapTiledJSON('tilemapJSON', './assets/tilemap_items/mindscapes_tilemaps.json');
+        //add tile info
+        this.load.tilemapTiledJSON('tilemapJSON2', './assets/tilemap_items/level_2.json');
 
         // load audio file path
         this.load.path  = './assets/sounds/'
