@@ -15,10 +15,10 @@ class Play extends Phaser.Scene {
         let gameMusic = this.sound.add('levelMusic', { loop: true });
         gameMusic.setVolume(0.5);
         gameMusic.setRate(0.6);
-        //gameMusic.play();
+        gameMusic.play();
 
         // reset the availablePlatforms value
-        availablePlatforms = 10;
+        availablePlatforms = 3;
         
         
         //add map tilesprite
@@ -32,34 +32,39 @@ class Play extends Phaser.Scene {
         const spikeLayer = map.createLayer('Spike', brain_set, 0, 0);
 
         // Initialize timer
-        this.counter = game.settings.gameTimer / 1000;
+        this.counter = game.settings.gameTimer / 500;
         this.startTime = this.time.now; // Resets every 1000 milliseconds
 
         //platform event listener
         this.input.on('pointerdown', this.placePlatform, this);
         
+        
         // create protagonist object
-        this.sid = new synapse(this, this.game.config.width / 24, this.game.config.height / 1.4, 'idleRight').setOrigin(0.5, 0.5);
+        const p1Spawn = map.findObject("playerSpawn", obj => obj.name === "playSpawn");
+        this.sid = new synapse(this, p1Spawn.x, p1Spawn.y, 'idleRight').setOrigin(0.5, 0.5);
         this.sid.setFriction(0.2, 0.2);
 
         // create End Flag and set game over state
-        this.flag = new endflag(this, this.game.config.width*.6, this.game.config.height/2, 'brainFlag');
+        const flagSpawn = map.findObject("playerEnd", obj => obj.name === "playEnd");
+        this.flag = new endflag(this, flagSpawn.x, flagSpawn.y, 'brainFlag');
         this.gameOver = false;
         
         // create enemies
-        this.happy1 = new enemy(this, game.config.width/3, game.config.height/2, 'happy').setOrigin(0.5)
-        this.sad1 = new enemy(this, game.config.width * .75, game.config.height/2, 'sad').setOrigin(0.5)
+        const happySpawn = map.findObject("enemySpawnHappy", obj => obj.name === "enemySpawnHappy");
+        this.happy1 = new enemy(this, happySpawn.x, happySpawn.y, 'happy').setOrigin(0.5);
+        const sadSpawn = map.findObject("enemySpawnSad", obj => obj.name === "enemySpawnSad");
+        this.sad1 = new enemy(this, sadSpawn.x, sadSpawn.y, 'sad').setOrigin(0.5);
         //could fix animation later
         
         //enable collision for map
-        groundLayer.setCollisionByProperty({ collides: true })
-        this.physics.add.collider(this.sid, groundLayer)
-        this.physics.add.collider(this.happy1, groundLayer)
-        this.physics.add.collider(this.sad1, groundLayer)
-        this.physics.add.collider(this.flag, groundLayer)
+        groundLayer.setCollisionByProperty({ collides: true });
+        this.physics.add.collider(this.sid, groundLayer);
+        this.physics.add.collider(this.happy1, groundLayer);
+        this.physics.add.collider(this.sad1, groundLayer);
+        this.physics.add.collider(this.flag, groundLayer);
 
         //enable collision for spikes
-        spikeLayer.setCollisionByProperty({ hurt: true }) 
+        spikeLayer.setCollisionByProperty({ hurt: true });
         //this.physics.add.collider(this.sid, spikeLayer);
         dead = false;
         this.physics.add.collider(this.sid, spikeLayer, null, function(){
