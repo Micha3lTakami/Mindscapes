@@ -30,6 +30,7 @@ class GravityBlock extends Phaser.Physics.Arcade.Sprite {
     // Enable input for the block
     this.setInteractive();
     this.on('pointerdown', this.onClick, this);
+    this.anims.play('Placed', true);
   }
 
   applyGravity(sensor, player) {
