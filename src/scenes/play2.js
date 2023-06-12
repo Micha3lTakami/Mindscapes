@@ -2,7 +2,10 @@ class Play2 extends Phaser.Scene {
     constructor() {
         super("playScene2");
     }
-
+    preload(){
+        this.load.image('tilesetImage2', './assets/images/basic-platformer-tileset2.png');
+        
+    }
     // create()
     // create play scene
     create() {
@@ -24,13 +27,13 @@ class Play2 extends Phaser.Scene {
         
         //add map tilesprite
         const map = this.add.tilemap('tilemapJSON2');
-        const brain_set = map.addTilesetImage('brain_set', 'tilesetImage');
+        const brain_set2 = map.addTilesetImage('brain_set2', 'tilesetImage2');
 
         //add layers for tile
-        const bgLayer = map.createLayer('Sky', brain_set, 0, 0);
-        const groundLayer = map.createLayer('Ground', brain_set, 0, 0);
-        const terrainLayer = map.createLayer('Decoration', brain_set, 0, 0);
-        const spikeLayer = map.createLayer('Spike', brain_set, 0, 0);
+        const bgLayer = map.createLayer('Sky', brain_set2, 0, 0);
+        const groundLayer = map.createLayer('Ground', brain_set2, 0, 0);
+        const terrainLayer = map.createLayer('Decoration', brain_set2, 0, 0);
+        const spikeLayer = map.createLayer('Spike', brain_set2, 0, 0);
 
 
         // Initialize timer
