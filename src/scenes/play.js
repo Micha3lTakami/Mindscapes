@@ -34,7 +34,7 @@ class Play extends Phaser.Scene {
         const spikeLayer = map.createLayer('Spike', brain_set, 0, 0);
 
         // Initialize timer
-        this.counter = game.settings.gameTimer / 500;
+        this.counter = game.settings.gameTimer / 400;
         this.startTime = this.time.now; // Resets every 1000 milliseconds
 
         //platform event listener

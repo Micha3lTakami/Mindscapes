@@ -6,7 +6,7 @@ class Start extends Phaser.Scene{
     // create start scene
     create() {
         let canvas = document.querySelector('canvas');
-        canvas.style.border = '10px #f58b57 inset';  
+        canvas.style.border = '10px #e4a672 inset';  
         this.cameras.main.fadeIn(1000);
 
         // start scene text configuration
